@@ -26,16 +26,23 @@ public class Constante {
     public static final String INSERT_CAJA ="INSERT INTO caja (identificador_mueble, tipo_registro, ganancia, perdida) VALUES (?,?,?,?)";
     public static final String UPDATE_MUEBLE_ENSAMBLADO = "UPDATE mueble_ensamblado SET estado = ? WHERE identificador_unico = ?";
     public static final String UPDATE_CANTIDAD_PIEZAS = "UPDATE pieza SET cantidad = cantidad - ? WHERE tipo_pieza = ? AND precio = ?";
+    public static final String UPDATE_AUMENTAR_CANTIDAD = "UPDATE pieza SET cantidad = cantidad + ? WHERE tipo_pieza = ? AND precio = ?";
     public static final String UPDATE_PIEZAS_AGOTADAS = "UPDATE pieza SET cantidad = ? WHERE tipo_pieza = ? AND precio = ?";
+    public static final String UPDATE_TIPO_USUARIO = "UPDATE usuario SET tipo = ? WHERE nombre_usuario = ?";
     public static final String SELECT_PIEZAS_INDIVIDUALES = "SELECT * FROM pieza WHERE tipo_pieza = ? AND precio = ?";
+    public static final String SELECT_PIEZAS_PARA_ENSAMBLE = "SELECT * FROM pieza WHERE tipo_pieza = ?";
     public static final String SELECT_PIEZAS = "SELECT tipo_pieza, SUM(cantidad) AS Cantidad FROM pieza GROUP BY tipo_pieza ORDER BY Cantidad ?";
+    public static final String SELECT_ENSAMBLE_PIEZAS = "SELECT nombre_mueble, tipo_pieza, cantidad_pieza FROM ensamble_pieza WHERE nombre_mueble = ?";
     public static final String SELECT_MUEBLES_ENSAMBLADOS = "SELECT * FROM mueble_ensamblado ORDER BY fecha_ensamble ?";
     public static final String SELECT_PIEZAS_ACABANDOSE = "SELECT tipo_pieza, SUM(cantidad) as total FROM pieza GROUP BY tipo_pieza HAVING total < 15";
+    public static final String SELECT_CANTIDAD_PIEZAS = "SELECT SUM(cantidad) as total FROM pieza GROUP BY tipo_pieza HAVING total >= ?";
     public static final String SELECT_COMPRA_FECHA = "SELECT * FROM compra WHERE fecha_compra BETWEEN ? AND ?";
     public static final String SELECT_DEVOLUCION_FECHA = "SELECT * FROM devolucion WHERE fecha_devolucion BETWEEN ? AND ?";
     public static final String SELECT_MUEBLE_DISPONIBLE = "SELECT * FROM mueble_ensamblado WHERE estado = ?";
     public static final String SELECT_DETALLES_COMPRA = "SELECT * FROM compra WHERE nit = ?";
     public static final String SELECT_VENTAS_DEL_DIA = "SELECT * FROM compra WHERE fecha_compra = CURDATE()";
     public static final String SELECT_CLIENTE = "SELECT * FROM cliente WHERE nit =?";
+    public static final String SELECT_USUARIO = "SELECT password, tipo FROM usuario WHERE nombre_usuario =?";
     public static final String DELETE_PIEZAS_AGOTADAS = "DELETE FROM pieza WHERE tipo_pieza = ? AND cantidad = 0";
+    
 }

@@ -12,7 +12,7 @@ public class MuebleEnsamblado {
     private BigDecimal costo;
     private com.mycompany.enums.EstadoMueble estado;
 
-    public MuebleEnsamblado(String usuarioEnsamblo, String muebleEnsamblar, Date fechaEnsamble, BigDecimal costo){
+    public MuebleEnsamblado(String muebleEnsamblar,String usuarioEnsamblo, Date fechaEnsamble, BigDecimal costo){
 
         this.idenficadorUnico = com.mycompany.operaciones.Generador.generador();
         this.muebleEnsamblar = muebleEnsamblar;

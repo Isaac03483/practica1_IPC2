@@ -2,9 +2,9 @@ package com.mycompany.enums;
 
 public enum TipoUsuario {
     
-    FABRICA("fabrica"),
-    VENTAS("ventas"),
-    ADMINISTRACION("administracion"),
+    FABRICA("Fábrica"),
+    VENTAS("punto de venta"),
+    FINANCIERO("financiero"),
     CANCELADO("cancelado");
 
     private String area;

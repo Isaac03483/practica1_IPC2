@@ -8,6 +8,7 @@ import com.mycompany.objetos.administracion.Usuario;
 import com.mycompany.objetos.fabrica.EnsamblePieza;
 import com.mycompany.objetos.fabrica.Mueble;
 import com.mycompany.objetos.fabrica.Pieza;
+import com.mycompany.objetos.ventas.Caja;
 import com.mycompany.objetos.ventas.Cliente;
 import com.mycompany.objetos.ventas.Compra;
 import com.mycompany.objetos.ventas.Devolucion;
@@ -15,11 +16,11 @@ import com.mycompany.objetos.ventas.MuebleEnsamblado;
 
 public class Conexion {
 
-    private Connection conexion;
+    static Connection conexion=null;
 
     public Conexion(){
-        
-        conexion = null;
+        conectar();
+        conectar();
     }
 
     public void conectar(){
@@ -28,7 +29,7 @@ public class Conexion {
 
             if(conexion != null){
                 System.out.println("Conexión aún vigente.");
-            } else {
+            } else if(conexion == null){
                 conexion = DriverManager.getConnection(com.mycompany.operaciones.Constante.URL_MYSQL, com.mycompany.operaciones.Constante.USR, com.mycompany.operaciones.Constante.PASSWORD);
 
                 System.out.println("Conexión establecida.");
@@ -58,9 +59,9 @@ public class Conexion {
 
     }
 
-    public void insertar(Object objeto){
+    public static void insertar(Object objeto){
 
-        Insert insert = new Insert(this.getConexion());
+        Insert insert = new Insert();
 
             if(objeto instanceof Cliente){
                 insert.insertarCliente((Cliente) objeto);
@@ -78,8 +79,10 @@ public class Conexion {
                 insert.insertarDevolucion((Devolucion) objeto);
             } else if(objeto instanceof MuebleEnsamblado){
                 insert.insertarMuebleEnsamblado((MuebleEnsamblado) objeto);
+            } else if(objeto instanceof Caja){
+                insert.insertarCaja((Caja) objeto);
             }
     }
 
-    public Connection getConexion(){return this.conexion;}
+    public static Connection getConexion(){return Conexion.conexion;}
 }

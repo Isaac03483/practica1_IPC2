@@ -13,13 +13,13 @@ public class Cliente {
         this.departamento = "";
     }
 
-    public Cliente(String nit, String nombre, String direccion){
+    public Cliente(String nombre, String nit, String direccion){
         this.nit = nit;
         this.nombre= nombre;
         this.direccion=direccion;
     }
 
-    public Cliente(String nit, String nombre, String direccion, String municipio, String departamento){
+    public Cliente(String nombre, String nit, String direccion, String municipio, String departamento){
         this.nit = nit;
         this.nombre= nombre;
         this.direccion=direccion;
