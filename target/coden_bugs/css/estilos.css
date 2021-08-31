@@ -4,3 +4,21 @@
     padding: 25px;
     margin-top: 50px;
 }
+
+.btn{
+
+    background: #005fcc; 
+    color: white;
+    border: 2px solid #005fcc;
+    
+}
+
+.btn:hover{
+    background: transparent;
+    color: rgba(0, 0, 0, 0.658);
+    border: 2px solid #005fcc;
+}
+
+#lateral { 
+    width: 200px;
+}

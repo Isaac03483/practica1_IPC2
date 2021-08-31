@@ -63,4 +63,20 @@ public class Update {
             e.printStackTrace();
         }
     }
+
+    public void updateInformacionPieza(com.mycompany.objetos.fabrica.Pieza piezaAntigua, com.mycompany.objetos.fabrica.Pieza piezaNueva){
+        try {
+            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.UPDATE_INFORMACION_PIEZAS);
+            query.setString(1, piezaNueva.getTipoPieza());
+            query.setBigDecimal(2, piezaNueva.getPrecio());
+            query.setInt(3, piezaNueva.getCantidad());
+            query.setString(4, piezaAntigua.getTipoPieza());
+            query.setBigDecimal(5, piezaAntigua.getPrecio());
+            query.setInt(6, piezaAntigua.getCantidad());
+            query.executeUpdate();
+        } catch (SQLException e){
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }

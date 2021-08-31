@@ -4,20 +4,24 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-        <link href="css/estilos.css" rel="stylesheet" type="text/css"/>
+        <link href="/coden_bugs/css/estilos.css" rel="stylesheet" type="text/css"/>
         <title>Coden_bugs</title>
     </head>
 
     <body>
 
         <div class="container col-lg-3">
-            <form>
+            <form action="/coden_bugs/cerrar-sesion-servlet" method="post">
                 <div class="form-group text-center">
                     <div class="form-group">
-                        <label><strong>Bienvenido al área de fábrica </strong></label><br>
-                        <label><a href="/coden_bugs/fabrica/agregarMueble.jsp">Agregar un nuevo mueble</a></label><br>
-                        <label><a href="/coden_bugs/fabrica/agregarPieza.jsp">Agregar nueva pieza</a></label><br>
-                        <label><a href="/coden_bugs/fabrica/ensamblarMueble.jsp">Ensamblar mueble</a></label>
+                        <label><strong>Bienvenido al área de fábrica <%=request.getSession().getAttribute("user")%></strong></label><br><br>
+                        
+                        <a href="/coden_bugs/fabrica/agregarPieza.jsp" class="btn btn-block">Agregar nueva pieza</a><br>
+                        <a href="/coden_bugs/fabrica/modificarPieza.jsp" class="btn btn-block">modificar pieza existente</a><br>
+                        <a href="/coden_bugs/fabrica/consultaPiezasMayor.jsp" class="btn btn-block">Consultar información de piezas</a><br>
+                        <a href="/coden_bugs/fabrica/consultaMueblesCreadosMayor.jsp" class="btn btn-block">Consultar información de muebles creados</a><br>
+                        <a href="/coden_bugs/fabrica/ensamblarMueble.jsp" class="btn btn-block">Ensamblar mueble</a><br>
+                        <input type="submit" class="btn btn-block" value="Cerrar Sesión">
                     </div>
                 </div>
             </form>

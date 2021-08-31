@@ -14,6 +14,11 @@ public class Pieza {
         this.cantidad = cantidad;
     }
 
+    public Pieza(String tipoPieza, int cantidad) {
+        this.tipoPieza=tipoPieza;
+        this.cantidad=cantidad;
+    }
+
     public String getTipoPieza(){return this.tipoPieza;}
 
     public BigDecimal getPrecio(){return this.precio;}

@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.JOptionPane;
+
 import com.mycompany.baseDeDatos.Select;
 import com.mycompany.enums.TipoUsuario;
 
@@ -19,6 +21,7 @@ public class LoginServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException{
 
+        response.setContentType("text/html;charset=UTF-8");
         String user = request.getParameter("txtus");
         String pass=request.getParameter("txtcontra");
         Select select = new Select();
@@ -33,32 +36,32 @@ public class LoginServlet extends HttpServlet{
                         
                         if(resultado.getString("password").equals(pass)){
 
+                            String areaTrabajo = resultado.getString("tipo");
                             request.getSession().setAttribute("user", user);
 
-                            if(resultado.getString("tipo").equals(TipoUsuario.FABRICA.getArea())){
+                            if(TipoUsuario.evaluar(areaTrabajo) != null){
+                                switch(TipoUsuario.evaluar(areaTrabajo)){
+                                    case FABRICA:request.getRequestDispatcher("/fabrica/fabrica.jsp").forward(request, response);
+                                    break;
+                                    case VENTAS:request.getRequestDispatcher("/ventas/ventas.jsp").forward(request, response);
+                                    break;
+                                    case FINANCIERO:request.getRequestDispatcher("/administracion/administracion.jsp").forward(request, response);
+                                    break;
+                                    case CANCELADO: System.err.println("Este usuario ya no se encuentra vigente.");
+                                    break;
+                                    default:System.err.println("área no encontrada.");
+                                    break;
+                                }
 
-                                response.sendRedirect("/coden_bugs/fabrica/fabrica.jsp");
-
-                            } else if(resultado.getString("tipo").equals(TipoUsuario.VENTAS.getArea())){
-
-                                response.sendRedirect("/coden_bugs/ventas/ventas.jsp");
-
-                            } else if(resultado.getString("tipo").equals(TipoUsuario.FINANCIERO.getArea())){
-
-                                response.sendRedirect("/coden_bugs/administracion/administracion.jsp");
-
-                            } else if(resultado.getString("tipo").equals(TipoUsuario.CANCELADO.getArea())){
-
-                                System.err.println("Este usuario ya no se encuentra vigente.");
-                                
-                            } else {
-                                System.err.println("área no encontrada.");
                             }
+                            
                         } else {
-                            System.out.println("Contraseña incorrecta.");
+                            response.sendRedirect("/coden_bugs/index.jsp");
+                            JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", "Coden Bugs.", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        System.out.println("Usuario no encontrado.");
+                        response.sendRedirect("/coden_bugs/index.jsp");
+                        JOptionPane.showMessageDialog(null, "usuario no encontrado.", "Coden Bugs.", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch(SQLException e){
                     e.printStackTrace();
@@ -72,4 +75,5 @@ public class LoginServlet extends HttpServlet{
             System.out.println("Campo vacío.");
         }
     }
+
 }

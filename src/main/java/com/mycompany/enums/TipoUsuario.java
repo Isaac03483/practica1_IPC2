@@ -14,4 +14,19 @@ public enum TipoUsuario {
     }
 
     public String getArea(){return this.area;}
+
+    public String toString(){return this.getArea();}
+
+    public static TipoUsuario evaluar(String dato){
+        if(TipoUsuario.FABRICA.getArea().equals(dato)){
+            return TipoUsuario.FABRICA;
+        } else if(TipoUsuario.VENTAS.getArea().equals(dato)){
+            return TipoUsuario.VENTAS;
+        } else if(TipoUsuario.FINANCIERO.getArea().equals(dato)){
+            return TipoUsuario.FINANCIERO;
+        } else if(TipoUsuario.CANCELADO.getArea().equals(dato)){
+            return TipoUsuario.CANCELADO;
+        } 
+        return null;
+    }
 }

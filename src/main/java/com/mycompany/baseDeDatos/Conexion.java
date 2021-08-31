@@ -16,7 +16,7 @@ import com.mycompany.objetos.ventas.MuebleEnsamblado;
 
 public class Conexion {
 
-    static Connection conexion=null;
+    protected static Connection conexion=null;
 
     public Conexion(){
         conectar();
@@ -30,12 +30,16 @@ public class Conexion {
             if(conexion != null){
                 System.out.println("Conexión aún vigente.");
             } else if(conexion == null){
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 conexion = DriverManager.getConnection(com.mycompany.operaciones.Constante.URL_MYSQL, com.mycompany.operaciones.Constante.USR, com.mycompany.operaciones.Constante.PASSWORD);
 
                 System.out.println("Conexión establecida.");
             }
         } catch (SQLException e) {
 
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -47,19 +51,12 @@ public class Conexion {
         if(conexion != null){
             System.out.println("Error al desconectar la conexión a la base de datos.");
         } else {
-            try {
-                conexion.close();
-                System.out.println("Se ha desconectado la conexión a la base de datos.");
-
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            System.out.println("Se ha desconectado la conexión a la base de datos.");
         }
 
     }
 
-    public static void insertar(Object objeto){
+    public static void insertar(Object objeto) throws SQLException{
 
         Insert insert = new Insert();
 

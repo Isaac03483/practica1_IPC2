@@ -24,4 +24,54 @@
     <servlet-name>CargaServlet</servlet-name>
     <url-pattern>/carga-servlet</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AgregarMuebleServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.AgregarMuebleServlet</servlet-class>
+  </servlet>
+    
+  <servlet-mapping>
+    <servlet-name>AgregarMuebleServlet</servlet-name>
+    <url-pattern>/administracion/agregar-mueble-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CerrarSesionServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.CerrarSesionServlet</servlet-class>
+  </servlet>
+    
+  <servlet-mapping>
+    <servlet-name>CerrarSesionServlet</servlet-name>
+    <url-pattern>/cerrar-sesion-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AgregarPiezaServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.AgregarPiezaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AgregarPiezaServlet</servlet-name>
+    <url-pattern>/fabrica/agregar-pieza-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ModificarPiezaServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ModificarPiezaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ModificarPiezaServlet</servlet-name>
+    <url-pattern>/fabrica/modificar-pieza-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AgregarUsuarioServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.AgregarUsuarioServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AgregarUsuarioServlet</servlet-name>
+    <url-pattern>/administracion/agregar-usuario-servlet</url-pattern>
+  </servlet-mapping>
 </web-app>

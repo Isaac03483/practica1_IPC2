@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Insert {
 
@@ -15,133 +16,88 @@ public class Insert {
         Conexion conexion = new Conexion();
     }
 
-    protected void insertarCliente(com.mycompany.objetos.ventas.Cliente cliente){
+    protected void insertarCliente(com.mycompany.objetos.ventas.Cliente cliente)throws SQLException{
 
-        try {
-
-            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_CLIENTE);
-            query.setString(1, cliente.getNit());
-            query.setString(2, cliente.getNombre());
-            query.setString(3, cliente.getDireccion());
-            query.setString(4, cliente.getMunicipio());
-            query.setString(5, cliente.getDepartamento());
-            query.executeUpdate();
-        } catch (SQLException e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
+        query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_CLIENTE);
+        query.setString(1, volverMinuscula(cliente.getNit()));
+        query.setString(2, volverMinuscula(cliente.getNombre()));
+        query.setString(3, volverMinuscula(cliente.getDireccion()));
+        query.setString(4, volverMinuscula(cliente.getMunicipio()));
+        query.setString(5, volverMinuscula(cliente.getDepartamento()));
+        query.executeUpdate();
     }
 
-    protected void insertarUsuario(com.mycompany.objetos.administracion.Usuario usuario) {
+    protected void insertarUsuario(com.mycompany.objetos.administracion.Usuario usuario) throws SQLException{
 
-        try {
-
-            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_USUARIO);
-            query.setString(1, usuario.getNombreUsuario());
-            query.setString(2, usuario.getPassword());
-            query.setString(3, usuario.getTipoUsuario().getArea());
-            query.executeUpdate();
-        } catch (SQLException e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
+        query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_USUARIO);
+        query.setString(1, usuario.getNombreUsuario());
+        query.setString(2, usuario.getPassword());
+        query.setString(3, usuario.getTipoUsuario().getArea());
+        query.executeUpdate();
     }
 
-    protected void insertarCompra(com.mycompany.objetos.ventas.Compra compra) {
+    protected void insertarCompra(com.mycompany.objetos.ventas.Compra compra) throws SQLException{
 
-        try {
-            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_COMPRA);
-            query.setString(1, compra.getNombreUsuario());
-            query.setString(2, compra.getIdentificadorMueble());
-            query.setString(3, compra.getNit());
-            query.setDate(4, java.sql.Date.valueOf(new SimpleDateFormat(com.mycompany.operaciones.Constante.FORMATO_FECHA_SQL).format(compra.getFecha())));
-            query.executeUpdate();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        Date fecha = new Date();
+        
+        query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_COMPRA);
+        query.setString(1, compra.getNombreUsuario());
+        query.setString(2, compra.getIdentificadorMueble());
+        query.setString(3, volverMinuscula(compra.getNit()));
+        query.setDate(4, java.sql.Date.valueOf(new SimpleDateFormat(com.mycompany.operaciones.Constante.FORMATO_FECHA_SQL).format(compra.getFecha())));
+        query.executeUpdate();
         
     }
 
-    protected void insertarMueble(com.mycompany.objetos.fabrica.Mueble mueble) {
+    protected void insertarMueble(com.mycompany.objetos.fabrica.Mueble mueble) throws SQLException{
 
-        try {
-            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_MUEBLE);
-            query.setString(1, mueble.getNombreMueble());
-            query.setBigDecimal(2, mueble.getPrecio());
-            query.executeUpdate();
+        query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_MUEBLE);
+        query.setString(1, volverMinuscula(mueble.getNombreMueble()));
+        query.setBigDecimal(2, mueble.getPrecio());
+        query.executeUpdate();
             
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
         
     }
 
-    protected void insertarMuebleEnsamblado(com.mycompany.objetos.ventas.MuebleEnsamblado muebleE) {
+    protected void insertarMuebleEnsamblado(com.mycompany.objetos.ventas.MuebleEnsamblado muebleE) throws SQLException{
 
-        try {
-            agregarMuebleEnsamblado(muebleE);
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-    }
-
-    protected void insertarPieza(com.mycompany.objetos.fabrica.Pieza pieza) {
-
-        try {
-
-            agregarPieza(pieza);
-        } catch (SQLException e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
-    }
-
-    protected void insertarEnsamble(com.mycompany.objetos.fabrica.EnsamblePieza ensamble) {
-
-        try {
-
-            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_ENSAMBLE_PIEZA);
-            query.setString(1, ensamble.getNombreMueble());
-            query.setString(2, ensamble.getTipoPieza());
-            query.setInt(3, ensamble.getCantidadPieza());
-            query.executeUpdate();
-        } catch (SQLException e) {
-            // TODO: handle exception
-            e.printStackTrace();
-        }
-    }
-
-    protected void insertarDevolucion(com.mycompany.objetos.ventas.Devolucion devolucion) {
-
-        try {
-            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_DEVOLUCION);
-            query.setInt(1, devolucion.getRegistroDevolucion());
-            query.setString(2, devolucion.getIdentificadorMueble());
-            query.setDate(3, java.sql.Date.valueOf(new SimpleDateFormat(com.mycompany.operaciones.Constante.FORMATO_FECHA_SQL).format(devolucion.getFecha())));
-            query.setBigDecimal(4, devolucion.getPerdida());
-            query.executeUpdate();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        agregarMuebleEnsamblado(muebleE);
         
     }
 
-    protected void insertarCaja(com.mycompany.objetos.ventas.Caja caja){
-        try {
-            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_CAJA);
-            query.setString(1, caja.getIdentificador());
-            query.setString(2, caja.getTipoRegistro().getTipo());
-            query.setBigDecimal(3, caja.getGanancia());
-            query.setBigDecimal(4, caja.getPerdida());
-            query.executeUpdate();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    protected void insertarPieza(com.mycompany.objetos.fabrica.Pieza pieza) throws SQLException{
+
+        agregarPieza(pieza);
+        
+    }
+
+    protected void insertarEnsamble(com.mycompany.objetos.fabrica.EnsamblePieza ensamble) throws SQLException{
+
+        query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_ENSAMBLE_PIEZA);
+        query.setString(1, volverMinuscula(ensamble.getNombreMueble()));
+        query.setString(2, volverMinuscula(ensamble.getTipoPieza()));
+        query.setInt(3, ensamble.getCantidadPieza());
+        query.executeUpdate();
+    }
+
+    protected void insertarDevolucion(com.mycompany.objetos.ventas.Devolucion devolucion) throws SQLException{
+
+        query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_DEVOLUCION);
+        query.setInt(1, devolucion.getRegistroDevolucion());
+        query.setString(2, devolucion.getIdentificadorMueble());
+        query.setDate(3, java.sql.Date.valueOf(new SimpleDateFormat(com.mycompany.operaciones.Constante.FORMATO_FECHA_SQL).format(devolucion.getFecha())));
+        query.setBigDecimal(4, devolucion.getPerdida());
+        query.executeUpdate();
+     
+    }
+
+    protected void insertarCaja(com.mycompany.objetos.ventas.Caja caja)throws SQLException{
+        query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_CAJA);
+        query.setString(1, caja.getIdentificador());
+        query.setString(2, caja.getTipoRegistro().getTipo());
+        query.setBigDecimal(3, caja.getGanancia());
+        query.setBigDecimal(4, caja.getPerdida());
+        query.executeUpdate();
     }
 
     private void agregarPieza(com.mycompany.objetos.fabrica.Pieza pieza) throws SQLException{
@@ -149,11 +105,11 @@ public class Insert {
         if(new Select().selectPiezasIndividuales(pieza.getTipoPieza(), pieza.getPrecio()).next()){
 
             Update update = new Update();
-            update.updateAumentarCantidad(1, pieza.getTipoPieza(), pieza.getPrecio());
+            update.updateAumentarCantidad(pieza.getCantidad(), volverMinuscula(pieza.getTipoPieza()), pieza.getPrecio());
             
         } else {
             query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_PIEZA);
-            query.setString(1, pieza.getTipoPieza());
+            query.setString(1, volverMinuscula(pieza.getTipoPieza()));
             query.setBigDecimal(2, pieza.getPrecio());
             query.setInt(3, pieza.getCantidad());
             query.executeUpdate();
@@ -188,7 +144,9 @@ public class Insert {
             
             for(int i = 0; i < resultadoPiezasEnsamble.size(); i++){ //ciclo improvisado utilizado para almacenar todas las piezas que haya en los resultSet
                 while(resultadoPiezasEnsamble.get(i).next()){
-                    piezas.add(new com.mycompany.objetos.fabrica.Pieza(resultadoPiezasEnsamble.get(i).getString("tipo_pieza"), resultadoPiezasEnsamble.get(i).getBigDecimal("precio"), resultadoPiezasEnsamble.get(i).getInt("cantidad")));
+                    if(resultadoPiezasEnsamble.get(i).getInt("cantidad") > 0){
+                        piezas.add(new com.mycompany.objetos.fabrica.Pieza(resultadoPiezasEnsamble.get(i).getString("tipo_pieza"), resultadoPiezasEnsamble.get(i).getBigDecimal("precio"), resultadoPiezasEnsamble.get(i).getInt("cantidad")));
+                    }
                 }
             }
 
@@ -237,12 +195,12 @@ public class Insert {
                 if(ensamblePermitido == true && piezasEncontradas == piezasEnsamblar.size()){ //hace el update e insert si el ensamble es permitido y el número de piezas encontradas es igual al número de piezas necesarias en la receta
                     Update update = new Update();
                     for(com.mycompany.objetos.fabrica.Pieza piezasActualizadas: piezas){
-                        update.updateCantidadPiezas(piezasActualizadas.getCantidad(), piezasActualizadas.getTipoPieza(), piezasActualizadas.getPrecio());
+                        update.updateCantidadPiezas(piezasActualizadas.getCantidad(), volverMinuscula(piezasActualizadas.getTipoPieza()), piezasActualizadas.getPrecio());
                     }
 
                     query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_MUEBLE_ENSAMBLADO);
                     query.setString(1, muebleE.getIdentificadorUnico());
-                    query.setString(2, muebleE.getMuebleEnsamblar());
+                    query.setString(2, volverMinuscula(muebleE.getMuebleEnsamblar()));
                     query.setString(3, muebleE.getUsuarioEnsamblo());
                     query.setDate(4, java.sql.Date.valueOf(new SimpleDateFormat(com.mycompany.operaciones.Constante.FORMATO_FECHA_SQL).format(muebleE.getFechaEnsamble())));
                     query.setBigDecimal(5, new BigDecimal(costoMueble));
@@ -255,6 +213,10 @@ public class Insert {
                 System.err.println("\n\n\n\n\nNo posee todas las piezas para la elaboración del mueble. error 1");
             }
         }
+    }
+
+    private String volverMinuscula(String dato){
+        return dato.toLowerCase();
     }
     
 }
