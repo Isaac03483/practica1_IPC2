@@ -2,7 +2,7 @@ package com.mycompany.enums;
 
 public enum TipoRegistro {
     
-    GANANCIA("ganacia"),
+    GANANCIA("ganancia"),
     PERDIDA("perdida");
     
     private String tipo;

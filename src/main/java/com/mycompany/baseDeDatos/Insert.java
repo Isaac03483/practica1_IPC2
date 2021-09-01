@@ -45,6 +45,7 @@ public class Insert {
         query.setString(2, compra.getIdentificadorMueble());
         query.setString(3, volverMinuscula(compra.getNit()));
         query.setDate(4, java.sql.Date.valueOf(new SimpleDateFormat(com.mycompany.operaciones.Constante.FORMATO_FECHA_SQL).format(compra.getFecha())));
+        query.setBigDecimal(5, compra.getTotal());
         query.executeUpdate();
         
     }

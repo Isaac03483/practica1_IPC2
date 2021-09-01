@@ -32,11 +32,7 @@
                     </div>
                     <div class="form-group">
                         <label>Usuario que ensambla:</label>
-                        <input type="text" name="txtusuario" class="form-control" placeholder="Ingrese el nombre del usuario" value="<%=request.getSession().getAttribute("user")%>" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Fecha de ensamble:</label>
-                        <input type="date" name="txtfecha" class="form-control" required>
+                        <input type="text" name="txtusuario" class="form-control" placeholder="Ingrese el nombre del usuario" value="<%=request.getSession().getAttribute("user")%>" readonly required>
                     </div>
                     <input class="btn btn-block" type="submit" name="accion" value="Ingresar"><br>
                     <a href="/coden_bugs/fabrica/fabrica.jsp" class="btn btn-block">Volver</a>

@@ -79,4 +79,20 @@ public class Update {
             e.printStackTrace();
         }
     }
+
+    public void updateInformacionCliente(com.mycompany.objetos.ventas.Cliente cliente){
+        try {
+            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.UPDATE_INFORMACION_CLIENTE);
+            query.setString(1, cliente.getNombre());
+            query.setString(2, cliente.getDireccion());
+            query.setString(3, cliente.getDepartamento());
+            query.setString(4, cliente.getMunicipio());
+            query.setString(5, cliente.getNit());
+            query.executeUpdate();
+
+        } catch (SQLException e) {
+            //TODO: handle exception
+            e.printStackTrace();
+        }
+    }
 }

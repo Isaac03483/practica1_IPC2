@@ -56,7 +56,7 @@
                 </div>
                 <div class="form-group">
                     <label>Precio:</label>
-                    <input type="number" name="textoprecio" id="textoprecio" min="1" step="any"value ="<%=request.getAttribute("precio")%>" required><br>
+                    <input type="number" name="textoprecio" id="textoprecio" min="1" step="any" value ="<%=request.getAttribute("precio")%>" required><br>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-block" value="Aplicar cambios">

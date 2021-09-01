@@ -2,14 +2,14 @@ package com.mycompany.baseDeDatos;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-
 import com.mycompany.enums.EstadoMueble;
 import com.mycompany.enums.TipoUsuario;
 import com.mycompany.objetos.administracion.Usuario;
 import com.mycompany.objetos.fabrica.Mueble;
 import com.mycompany.objetos.fabrica.Pieza;
+import com.mycompany.objetos.ventas.Cliente;
+import com.mycompany.objetos.ventas.Compra;
 import com.mycompany.objetos.ventas.MuebleEnsamblado;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -77,9 +77,32 @@ public class Select {
         return resultado;
     }
 
-    public ResultSet selectCompras(Date fechaInicial, Date fechaFinal){
+    public ResultSet selectComprasDia(){
+        ResultSet resultado = null;
+        try {
+            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_VENTAS_DEL_DIA);
+            resultado = query.executeQuery();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return resultado;
+    }
 
-        return null;
+    public ResultSet selectCompras(String nit, String fechaInicial, String fechaFinal){
+
+        ResultSet resultado = null;
+        try {
+            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_COMPRA_CLIENTE);
+            query.setString(1, nit);
+            query.setString(2, fechaInicial);
+            query.setString(3, fechaFinal);
+            resultado = query.executeQuery();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return resultado;
     }
 
     public ResultSet selectPiezasIndividuales(String tipoPieza, BigDecimal precio){
@@ -100,6 +123,20 @@ public class Select {
         ResultSet resultado = null;
         try {
             query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_ENSAMBLE_PIEZAS);
+            query.setString(1, nombre_mueble);
+            resultado = query.executeQuery();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return resultado;
+    
+    }
+
+    public ResultSet selectMueble(String nombre_mueble){
+        ResultSet resultado = null;
+        try {
+            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_MUEBLE);
             query.setString(1, nombre_mueble);
             resultado = query.executeQuery();
         } catch (SQLException e) {
@@ -174,6 +211,44 @@ public class Select {
         return resultado;
     }
 
+    public ResultSet selectCliente(String nit){
+        ResultSet resultado = null;
+        try {
+            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_CLIENTE);
+            query.setString(1,nit);
+            resultado = query.executeQuery();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return resultado;
+    }
+
+    public ResultSet selectClientes(){
+        ResultSet resultado = null;
+        try {
+            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_CLIENTES);
+            resultado = query.executeQuery();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return resultado;
+    }
+
+    public ResultSet selectMuebleSeleccionado(String id){
+        ResultSet resultado = null;
+        try {
+            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_MUEBLE_SELECCIONADO);
+            query.setString(1, id);
+            resultado = query.executeQuery();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return resultado;
+    }
+
     public ResultSet selectMueblesAll(){
         ResultSet resultado = null;
         try {
@@ -226,13 +301,9 @@ public class Select {
 
         try {
             while(listaMuebles.next()){
-                muebles.add(new MuebleEnsamblado(listaMuebles.getString("identificador_unico"), listaMuebles.getString("nombre_mueble"), listaMuebles.getString("usuario_ensamblo"), (new SimpleDateFormat(com.mycompany.operaciones.Constante.FORMATO_FECHA_CARGA).parse(new SimpleDateFormat(com.mycompany.operaciones.Constante.FORMATO_FECHA_CARGA).format(listaMuebles.getDate("fecha_ensamble")))), 
-                listaMuebles.getBigDecimal("costo"), EstadoMueble.evaluar(listaMuebles.getString("estado"))));
+                muebles.add(new MuebleEnsamblado(listaMuebles.getString("identificador_unico"), listaMuebles.getString("nombre_mueble"), listaMuebles.getString("usuario_ensamblo"),listaMuebles.getDate("fecha_ensamble"), listaMuebles.getBigDecimal("costo"), EstadoMueble.evaluar(listaMuebles.getString("estado"))));
             }
         } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ParseException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -287,6 +358,127 @@ public class Select {
         }
 
         return usuarios;
+    }
+
+    public List<MuebleEnsamblado> getMueblesDisponibles(String ensamblado){
+        List<MuebleEnsamblado> muebles = new ArrayList<>();
+        ResultSet listaMuebles = selectMueblesDisponibles(ensamblado);
+
+        try {
+            while(listaMuebles.next()){
+                muebles.add(new MuebleEnsamblado(listaMuebles.getString("identificador_unico"), listaMuebles.getString("nombre_mueble"), listaMuebles.getString("usuario_ensamblo"),listaMuebles.getDate("fecha_ensamble"), listaMuebles.getBigDecimal("costo"), EstadoMueble.evaluar(listaMuebles.getString("estado"))));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return muebles;
+    }
+
+    public Mueble getMueble(String nombreMueble){
+        Mueble mueble=null;
+        ResultSet resultadoMueble = selectMueble(nombreMueble);
+
+        try {
+            if(resultadoMueble.next()){
+                mueble = new Mueble(resultadoMueble.getString("nombre_mueble"), resultadoMueble.getBigDecimal("precio"));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } 
+
+        return mueble;
+    }
+
+    public MuebleEnsamblado getMuebleSelecionado(String id){
+        MuebleEnsamblado mueble=null;
+        ResultSet resultadoMueble = selectMuebleSeleccionado(id);
+
+        try {
+            if(resultadoMueble.next()){
+                mueble = new MuebleEnsamblado(resultadoMueble.getString("identificador_unico"), resultadoMueble.getString("nombre_mueble"), resultadoMueble.getString("usuario_ensamblo"), resultadoMueble.getDate("fecha_ensamble"), 
+                resultadoMueble.getBigDecimal("costo"), EstadoMueble.evaluar(resultadoMueble.getString("estado")));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return mueble;
+    }
+    
+    public Cliente getCliente(String nit){
+        Cliente cliente=null;
+        ResultSet resultadoCliente = selectCliente(nit);
+
+        try {
+            if(resultadoCliente.next()){
+                cliente = new Cliente(resultadoCliente.getString("nombre"), resultadoCliente.getString("nit"), resultadoCliente.getString("direccion"), resultadoCliente.getString("municipio"), resultadoCliente.getString("departamento"));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return cliente;
+    }
+
+    public List<Cliente> getClientes(){
+        List<Cliente> clientes = new ArrayList<>();
+        ResultSet resultadoCliente = selectClientes();
+
+        try {
+            while(resultadoCliente.next()){
+                clientes.add(new Cliente(resultadoCliente.getString("nombre"), resultadoCliente.getString("nit"), resultadoCliente.getString("direccion"), resultadoCliente.getString("municipio"), resultadoCliente.getString("departamento")));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return clientes;
+    }
+
+    public List<Compra> getCompras(String nit, String fechaInicial, String fechaFinal){
+        List<Compra> compras = new ArrayList<>();
+        ResultSet resultadoCompras = selectCompras(nit, fechaInicial,fechaFinal);
+
+        try {
+
+            while(resultadoCompras.next()){
+                compras.add(new Compra(resultadoCompras.getInt("registro_compra"),resultadoCompras.getString("nombre_usuario"), resultadoCompras.getString("identificador_mueble"), resultadoCompras.getString("nit"), resultadoCompras.getDate("fecha_compra"), resultadoCompras.getBigDecimal("total")));
+            }
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch(NullPointerException e){
+           System.err.println("Error nulo en fechas");
+        }
+
+        return compras;
+    }
+
+    public List<Compra> getVentasDia(){
+        List<Compra> compras = new ArrayList<>();
+        ResultSet resultadoCompras = selectComprasDia();
+
+        try {
+
+            while(resultadoCompras.next()){
+                compras.add(new Compra(resultadoCompras.getInt("registro_compra"),resultadoCompras.getString("nombre_usuario"), resultadoCompras.getString("identificador_mueble"), resultadoCompras.getString("nit"), resultadoCompras.getDate("fecha_compra"), resultadoCompras.getBigDecimal("total")));
+            }
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch(NullPointerException e){
+           System.err.println("Error nulo en fechas");
+        }
+
+        return compras;
     }
     
 }

@@ -15,7 +15,9 @@ com/mycompany/servlets/CerrarSesionServlet.class
 com/mycompany/enums/TipoRegistro.class
 com/mycompany/objetos/ventas/Cliente.class
 com/mycompany/baseDeDatos/Select.class
+com/mycompany/servlets/AgregarVentaServlet.class
 com/mycompany/objetos/fabrica/Pieza.class
+com/mycompany/servlets/ConsultaCompraClienteServlet.class
 com/mycompany/operaciones/Constante.class
 com/mycompany/objetos/administracion/Usuario.class
 com/mycompany/servlets/EnsamblarMuebleServlet.class

@@ -74,4 +74,24 @@
     <servlet-name>AgregarUsuarioServlet</servlet-name>
     <url-pattern>/administracion/agregar-usuario-servlet</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AgregarVentaServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.AgregarVentaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AgregarVentaServlet</servlet-name>
+    <url-pattern>/ventas/agregar-venta-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ConsultaCompraClienteServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ConsultaCompraClienteServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ConsultaCompraClienteServlet</servlet-name>
+    <url-pattern>/ventas/consulta-compra-cliente-servlet</url-pattern>
+  </servlet-mapping>
 </web-app>

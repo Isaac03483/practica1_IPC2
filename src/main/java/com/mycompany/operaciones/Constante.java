@@ -17,7 +17,7 @@ public class Constante {
     public static final String CLIENTE = "CLIENTE";
     public static final String INSERT_CLIENTE = "INSERT INTO cliente (nit, nombre, direccion, municipio, departamento) VALUES (?,?,?,?,?)";
     public static final String INSERT_USUARIO = "INSERT INTO usuario (nombre_usuario, password, tipo) VALUES (?,?,?)";
-    public static final String INSERT_COMPRA = "INSERT INTO compra (nombre_usuario, identificador_mueble, nit, fecha_compra) VALUES (?,?,?,?)";
+    public static final String INSERT_COMPRA = "INSERT INTO compra (nombre_usuario, identificador_mueble, nit, fecha_compra, total) VALUES (?,?,?,?,?)";
     public static final String INSERT_MUEBLE = "INSERT INTO mueble (nombre_mueble, precio) VALUES (?,?)";
     public static final String INSERT_MUEBLE_ENSAMBLADO = "INSERT INTO mueble_ensamblado (identificador_unico, nombre_mueble, usuario_ensamblo, fecha_ensamble, costo, estado) VALUES (?,?,?,?,?,?)";
     public static final String INSERT_PIEZA = "INSERT INTO pieza (tipo_pieza, precio, cantidad) VALUES (?,?,?)";
@@ -28,6 +28,7 @@ public class Constante {
     public static final String UPDATE_CANTIDAD_PIEZAS = "UPDATE pieza SET cantidad = cantidad - ? WHERE tipo_pieza = ? AND precio = ?";
     public static final String UPDATE_AUMENTAR_CANTIDAD = "UPDATE pieza SET cantidad = cantidad + ? WHERE tipo_pieza = ? AND precio = ?";
     public static final String UPDATE_INFORMACION_PIEZAS = "UPDATE pieza SET tipo_pieza= ?, precio = ?, cantidad = ? WHERE tipo_pieza = ? AND precio = ? AND cantidad = ?";
+    public static final String UPDATE_INFORMACION_CLIENTE = "UPDATE cliente SET nombre = ?, direccion = ?, departamento =?, municipio=? WHERE nit =?";
     public static final String UPDATE_PIEZAS_AGOTADAS = "UPDATE pieza SET cantidad = ? WHERE tipo_pieza = ? AND precio = ?";
     public static final String UPDATE_TIPO_USUARIO = "UPDATE usuario SET tipo = ? WHERE nombre_usuario = ?";
     public static final String SELECT_PIEZAS_INDIVIDUALES = "SELECT * FROM pieza WHERE tipo_pieza = ? AND precio = ?";
@@ -35,11 +36,15 @@ public class Constante {
     public static final String SELECT_PIEZAS_ORDENADAS = "SELECT tipo_pieza, SUM(cantidad) AS Cantidad FROM pieza GROUP BY tipo_pieza ORDER BY Cantidad ";
     public static final String SELECT_ENSAMBLE_PIEZAS = "SELECT nombre_mueble, tipo_pieza, cantidad_pieza FROM ensamble_pieza WHERE nombre_mueble = ?";
     public static final String SELECT_MUEBLES_ENSAMBLADOS = "SELECT * FROM mueble_ensamblado ORDER BY fecha_ensamble ";
+    public static final String SELECT_MUEBLE_SELECCIONADO = "SELECT * FROM mueble_ensamblado WHERE identificador_unico= ?";
     public static final String SELECT_MUEBLES="SELECT * FROM mueble";
+    public static final String SELECT_MUEBLE = "SELECT * FROM mueble WHERE nombre_mueble=?";
     public static final String SELECT_PIEZAS="SELECT * FROM pieza";
+    public static final String SELECT_CLIENTES = "SELECT * FROM cliente";
     public static final String SELECT_PIEZAS_ACABANDOSE = "SELECT tipo_pieza, SUM(cantidad) as total FROM pieza GROUP BY tipo_pieza HAVING total < 15";
     public static final String SELECT_CANTIDAD_PIEZAS = "SELECT SUM(cantidad) as total FROM pieza GROUP BY tipo_pieza HAVING total >= ?";
-    public static final String SELECT_COMPRA_FECHA = "SELECT * FROM compra WHERE fecha_compra BETWEEN ? AND ?";
+    public static final String SELECT_COMPRA_FECHA = "SELECT * FROM compra WHERE nit = ? AND fecha_compra BETWEEN ? AND ?";
+    public static final String SELECT_COMPRA_CLIENTE = "SELECT * FROM compra WHERE nit = ? AND fecha_compra BETWEEN ? AND ?";
     public static final String SELECT_DEVOLUCION_FECHA = "SELECT * FROM devolucion WHERE fecha_devolucion BETWEEN ? AND ?";
     public static final String SELECT_MUEBLE_DISPONIBLE = "SELECT * FROM mueble_ensamblado WHERE estado = ?";
     public static final String SELECT_DETALLES_COMPRA = "SELECT * FROM compra WHERE nit = ?";

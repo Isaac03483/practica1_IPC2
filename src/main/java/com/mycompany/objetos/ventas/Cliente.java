@@ -27,6 +27,14 @@ public class Cliente {
         this.departamento = departamento;
     }
 
+    public void setNombre(String nombre){this.nombre = nombre;}
+
+    public void setDireccion(String direccion){this.direccion = direccion;}
+
+    public void setMunicipio(String municipio){this.municipio = municipio;}
+
+    public void setDepartamento(String departamento){this.departamento = departamento;}
+
     public String getNit(){return this.nit;}
 
     public String getNombre(){return this.nombre;}

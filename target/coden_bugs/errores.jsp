@@ -18,7 +18,7 @@
     <body>
 
         <div class="Container lateral">
-            <center><label><strong>Errores al cargar Archivo</strong></label></center>
+            <center><label><strong>Errores al cargar Archivo</strong></label></center><br>
             <%
                 for(String error: errores){
                     out.print("<label>"+error+"</label>");

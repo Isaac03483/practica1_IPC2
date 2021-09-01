@@ -16,8 +16,6 @@ import com.mycompany.enums.TipoUsuario;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/login-servlet"})
 public class LoginServlet extends HttpServlet{
     
-
-    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException{
 
@@ -39,30 +37,32 @@ public class LoginServlet extends HttpServlet{
                             String areaTrabajo = resultado.getString("tipo");
                             request.getSession().setAttribute("user", user);
 
-                            if(TipoUsuario.evaluar(areaTrabajo) != null){
-                                switch(TipoUsuario.evaluar(areaTrabajo)){
-                                    case FABRICA:request.getRequestDispatcher("/fabrica/fabrica.jsp").forward(request, response);
-                                    break;
-                                    case VENTAS:request.getRequestDispatcher("/ventas/ventas.jsp").forward(request, response);
-                                    break;
-                                    case FINANCIERO:request.getRequestDispatcher("/administracion/administracion.jsp").forward(request, response);
-                                    break;
-                                    case CANCELADO: System.err.println("Este usuario ya no se encuentra vigente.");
-                                    break;
-                                    default:System.err.println("área no encontrada.");
-                                    break;
-                                }
-
+                            switch(TipoUsuario.evaluar(areaTrabajo)){
+                                case FABRICA:request.getRequestDispatcher("/fabrica/fabrica.jsp").forward(request, response);
+                                break;
+                                case VENTAS:request.getRequestDispatcher("/ventas/ventas.jsp").forward(request, response);
+                                break;
+                                case FINANCIERO:request.getRequestDispatcher("/administracion/administracion.jsp").forward(request, response);
+                                break;
+                                case CANCELADO: System.err.println("Este usuario ya no se encuentra vigente.");
+                                break;
+                                default:System.err.println("área no encontrada.");
+                                break;
                             }
+
+                            
                             
                         } else {
-                            response.sendRedirect("/coden_bugs/index.jsp");
+                            
+                            response.sendRedirect(request.getContextPath()+"/index.jsp");
                             JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", "Coden Bugs.", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        response.sendRedirect("/coden_bugs/index.jsp");
+                        response.sendRedirect(request.getContextPath()+"/index.jsp");
                         JOptionPane.showMessageDialog(null, "usuario no encontrado.", "Coden Bugs.", JOptionPane.ERROR_MESSAGE);
                     }
+
+                    System.out.println(request.getContextPath());
                 } catch(SQLException e){
                     e.printStackTrace();
                 } catch(NullPointerException e){

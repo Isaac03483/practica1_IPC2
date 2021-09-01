@@ -2,16 +2,12 @@ package com.mycompany.servlets;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.mycompany.baseDeDatos.Conexion;
 import com.mycompany.baseDeDatos.Select;
 import com.mycompany.baseDeDatos.Update;
 import com.mycompany.objetos.fabrica.Pieza;
@@ -48,9 +44,7 @@ public class ModificarPiezaServlet extends HttpServlet{
 
     private String[] dividirInformacion(String informacion){
 
-        String[] informacionSeparada = new String[2];
-
-        return  informacionSeparada = informacion.split("-");
+        return  informacion.split("-");
     }
 
     private Pieza encontrarPieza(String nombre, BigDecimal precio, List<Pieza> listaPiezas){

@@ -121,16 +121,16 @@ public class CargaDatos {
                     break;
                 }
             } catch(NumberFormatException e){
-                errores.add("Error en el ingreso de datos en el campo de tipo número en la línea: "+numeroLinea+"\n"+auxiliar);
+                errores.add("Error en el ingreso de datos en el campo de tipo número en la línea: "+numeroLinea+auxiliar);
                 e.printStackTrace();
             } catch(ParseException e){
-                errores.add("Error en el ingreso de datos en el campo de tipo número en la línea: "+numeroLinea+"\n"+auxiliar);
+                errores.add("Error al convertir al formato de fecha "+Constante.FORMATO_FECHA_CARGA+" en la línea: "+numeroLinea+auxiliar);
                 e.printStackTrace();
             } catch(ArrayIndexOutOfBoundsException e){
-                errores.add("Error por falta de información en la línea: "+numeroLinea+"\n"+auxiliar);
+                errores.add("Error por falta de información en la línea: "+numeroLinea+auxiliar);
                 e.printStackTrace();
             } catch (SQLException e) {
-                errores.add("Error al intentar guardar la información de la línea: "+numeroLinea+"\n"+auxiliar);
+                errores.add("Error al intentar guardar la información de la línea: "+numeroLinea+auxiliar);
                 e.printStackTrace();
             }
             numeroLinea++;
