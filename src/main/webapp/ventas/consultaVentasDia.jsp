@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.mycompany.objetos.ventas.Cliente"%>
 <%@page import="com.mycompany.objetos.ventas.Compra"%>
 <%@page import="com.mycompany.baseDeDatos.Select"%>
@@ -20,8 +22,8 @@
     <body>
 
         <div class="container lateral">
-            <a href="/coden_bugs/ventas/ventas.jsp" class="btn btn-block">Volver</a><br><br>
-
+            <a href="/coden_bugs/ventas/ventas.jsp" class="btn btn-block">Volver</a><br>
+            <center><label><strong>Ventas del día <%= new SimpleDateFormat("yyyy-MM-dd").format(new Date())%></strong></label></center><br>
             <table style="width:100%">
 
                     <tr>

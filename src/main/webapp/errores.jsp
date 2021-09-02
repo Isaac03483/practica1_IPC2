@@ -18,13 +18,14 @@
     <body>
 
         <div class="Container lateral">
+            <h1><strong>DATOS CARGADOS EXITOSAMENTE</strong></h1><br>
             <center><label><strong>Errores al cargar Archivo</strong></label></center><br>
             <%
                 for(String error: errores){
                     out.print("<label>"+error+"</label>");
                 }
             %>
-
+            <br>
             <a href="/coden_bugs/index.jsp" class="btn btn-block">Volver al Inicio de sesión</a>
             <a href="/coden_bugs/cargaDatos.jsp" class="btn btn-block">Vovler al menú de Carga de datos</a>
         </div> 

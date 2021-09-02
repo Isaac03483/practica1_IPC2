@@ -4,13 +4,11 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.mycompany.baseDeDatos.Conexion;
 import com.mycompany.baseDeDatos.Select;
 import com.mycompany.baseDeDatos.Update;
@@ -30,6 +28,7 @@ public class AgregarVentaServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        request.setCharacterEncoding("UTF-8");
         String nit = request.getParameter("txtnit");
         String id = request.getParameter("idmueble");
 
@@ -74,10 +73,11 @@ public class AgregarVentaServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        request.setCharacterEncoding("UTF-8");
         String nombreUsuario = (String) request.getSession().getAttribute("user");
         String nit = request.getParameter("nitcon");
 
-        if(nit == null){
+        if(nit == null || nit.equalsIgnoreCase("null")){
             nit = "cf";
         }
         
@@ -101,20 +101,21 @@ public class AgregarVentaServlet extends HttpServlet{
             guardarVenta(nombreUsuario, nit);
         }
 
+        cliente = null;
         response.sendRedirect("/coden_bugs/ventas/agregarVenta.jsp");
     }
 
     private void guardarVenta(String nombreUsuario, String nit){
         Mueble muebleBuscado = new Select().getMueble(mueble.getMuebleEnsamblar());
         try {
-            Conexion.insertar(new Compra(nombreUsuario, mueble.getIdentificadorUnico(), nit, new Date(), mueble.getCosto()));
             if(muebleBuscado.getPrecio().doubleValue() > mueble.getCosto().doubleValue()){
                 double ganancia = muebleBuscado.getPrecio().doubleValue() - mueble.getCosto().doubleValue();
-                Conexion.insertar(new Caja(mueble.getIdentificadorUnico(), TipoRegistro.GANANCIA, new BigDecimal(ganancia), new BigDecimal(0)));
+                Conexion.insertar(new Caja(mueble.getIdentificadorUnico(), nombreUsuario, new Date(), TipoRegistro.GANANCIA, new BigDecimal(ganancia), new BigDecimal(0)));
             } else {
                 double perdida = mueble.getCosto().doubleValue()-muebleBuscado.getPrecio().doubleValue();
-                Conexion.insertar(new Caja(mueble.getIdentificadorUnico(), TipoRegistro.PERDIDA, new BigDecimal(0), new BigDecimal(perdida)));
+                Conexion.insertar(new Caja(mueble.getIdentificadorUnico(), nombreUsuario, new Date(), TipoRegistro.PERDIDA, new BigDecimal(0), new BigDecimal(perdida)));
             }
+            Conexion.insertar(new Compra(nombreUsuario, mueble.getIdentificadorUnico(), nit, new Date(), mueble.getCosto()));
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -136,16 +137,21 @@ public class AgregarVentaServlet extends HttpServlet{
             cliente.setDepartamento(departamento);
         }
 
-        if(direccion == null){
-            cliente.setDireccion("");
-        } else {
-            cliente.setDireccion(direccion);
-        }
-
         if(municipio == null){
             cliente.setMunicipio("");
         } else {
             cliente.setMunicipio(municipio);
+        }
+
+        if(direccion == null){
+            cliente.setDireccion("");
+        } else if(direccion.equalsIgnoreCase("ciudad")){
+            
+            cliente.setDireccion(direccion);
+            cliente.setMunicipio("");
+            cliente.setDepartamento("");
+        }else {
+            cliente.setDireccion(direccion);
         }
 
         new Update().updateInformacionCliente(cliente);

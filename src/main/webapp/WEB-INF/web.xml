@@ -86,6 +86,16 @@
   </servlet-mapping>
 
   <servlet>
+    <servlet-name>AgregarDevolucionServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.AgregarDevolucionServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AgregarDevolucionServlet</servlet-name>
+    <url-pattern>/ventas/agregar-devolucion-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
     <servlet-name>ConsultaCompraClienteServlet</servlet-name>
     <servlet-class>com.mycompany.servlets.ConsultaCompraClienteServlet</servlet-class>
   </servlet>
@@ -93,5 +103,25 @@
   <servlet-mapping>
     <servlet-name>ConsultaCompraClienteServlet</servlet-name>
     <url-pattern>/ventas/consulta-compra-cliente-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ConsultaDevolucionClienteServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ConsultaDevolucionClienteServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ConsultaDevolucionClienteServlet</servlet-name>
+    <url-pattern>/ventas/consulta-devolucion-cliente-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ModificarUsuarioServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ModificarUsuarioServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ModificarUsuarioServlet</servlet-name>
+    <url-pattern>/administracion/modificar-usuario-servlet</url-pattern>
   </servlet-mapping>
 </web-app>

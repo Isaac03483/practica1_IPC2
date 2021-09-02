@@ -18,8 +18,7 @@ public class LoginServlet extends HttpServlet{
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException,IOException{
-
-        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String user = request.getParameter("txtus");
         String pass=request.getParameter("txtcontra");
         Select select = new Select();
@@ -45,8 +44,10 @@ public class LoginServlet extends HttpServlet{
                                 case FINANCIERO:request.getRequestDispatcher("/administracion/administracion.jsp").forward(request, response);
                                 break;
                                 case CANCELADO: System.err.println("Este usuario ya no se encuentra vigente.");
+                                response.sendRedirect("/coden_bugs/index.jsp");
                                 break;
                                 default:System.err.println("área no encontrada.");
+                                response.sendRedirect("/coden_bugs/index.jsp");
                                 break;
                             }
 
@@ -54,11 +55,11 @@ public class LoginServlet extends HttpServlet{
                             
                         } else {
                             
-                            response.sendRedirect(request.getContextPath()+"/index.jsp");
+                            response.sendRedirect("/coden_bugs/index.jsp");
                             JOptionPane.showMessageDialog(null, "Contraseña incorrecta.", "Coden Bugs.", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        response.sendRedirect(request.getContextPath()+"/index.jsp");
+                        response.sendRedirect("/coden_bugs/index.jsp");
                         JOptionPane.showMessageDialog(null, "usuario no encontrado.", "Coden Bugs.", JOptionPane.ERROR_MESSAGE);
                     }
 

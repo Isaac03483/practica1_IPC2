@@ -18,13 +18,13 @@ public enum TipoUsuario {
     public String toString(){return this.getArea();}
 
     public static TipoUsuario evaluar(String dato){
-        if(TipoUsuario.FABRICA.getArea().equals(dato)){
+        if(TipoUsuario.FABRICA.getArea().equalsIgnoreCase(dato)){
             return TipoUsuario.FABRICA;
-        } else if(TipoUsuario.VENTAS.getArea().equals(dato)){
+        } else if(TipoUsuario.VENTAS.getArea().equalsIgnoreCase(dato)){
             return TipoUsuario.VENTAS;
-        } else if(TipoUsuario.FINANCIERO.getArea().equals(dato)){
+        } else if(TipoUsuario.FINANCIERO.getArea().equalsIgnoreCase(dato)){
             return TipoUsuario.FINANCIERO;
-        } else if(TipoUsuario.CANCELADO.getArea().equals(dato)){
+        } else if(TipoUsuario.CANCELADO.getArea().equalsIgnoreCase(dato)){
             return TipoUsuario.CANCELADO;
         } 
         return null;

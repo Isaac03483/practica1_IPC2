@@ -20,12 +20,12 @@
                     </div>
                     <div class="form-group">
                         <label>Precio:</label>
-                        <input type="number" name="txtprecio" class="form-control" min="1" required>
+                        <input type="number" name="txtprecio" step="any" class="form-control" required>
 
                     </div>
                     <div class="form-group">
-                        <label>Unidades</label>
-                        <input type="number" nave="txtunidades" class="form-control" min="1" required>
+                        <label>Unidades:</label>
+                        <input type="number" name="txtunidades" class="form-control" required>
                     </div>
                     <input class="btn btn-block" type="submit" name="accion" value="Agregar"><br>
                     <a href="/coden_bugs/fabrica/fabrica.jsp" class="btn btn-block">Volver</a>

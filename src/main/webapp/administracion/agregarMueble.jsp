@@ -21,7 +21,7 @@
                     </div>
                     <div class="form-group">
                         <label>Precio:</label>
-                        <input type="number" name="txtprecio" class="form-control" min="1" required>
+                        <input type="number" name="txtprecio" class="form-control" min="1" step="any" required>
 
                     </div>
                     <input class="btn btn-block" type="submit" name="accion" value="Agregar"><br>

@@ -18,8 +18,8 @@
                         
                         <a href="/coden_bugs/ventas/agregarVenta.jsp" class="btn btn-block">Agregar nueva venta</a><br>
                         <a href="/coden_bugs/ventas/agregarDevolucion.jsp" class="btn btn-block">Agregar nueva devolución</a><br>
-                        <a href="/coden_bugs/ventas/consultaCompraCliente.jsp" class="btn btn-block">Consultar compra de cliente </a><br>
-                        <a href="/coden_bugs/ventas/consultaDevolucion.jsp" class="btn btn-block">Consultar devoluciones</a><br>
+                        <a href="/coden_bugs/ventas/consultaCompraCliente.jsp" class="btn btn-block">Consultar compras de cliente </a><br>
+                        <a href="/coden_bugs/ventas/consultaDevolucion.jsp" class="btn btn-block">Consultar devoluciones de cliente</a><br>
                         <a href="/coden_bugs/ventas/consultaMueblesDisponibles.jsp" class="btn btn-block">Consultar Muebles Disponibles</a><br>
                         <a href="/coden_bugs/ventas/consultaVentasDia.jsp" class="btn btn-block">Consultar ventas del Día</a><br>
                         <input type="submit" class="btn btn-block" value="Cerrar Sesión">

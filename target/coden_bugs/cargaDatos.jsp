@@ -11,7 +11,7 @@
 
         <div class="container col-lg-3">
 
-            <form method="post" action="carga-servlet">
+            <form method="post" action="carga-servlet" enctype="multipart/form-data">
 
                 <div class="form-group text-center">
                     <h1>Bienvenido a la carga de datos</h1><br>

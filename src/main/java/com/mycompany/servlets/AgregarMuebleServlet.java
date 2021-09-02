@@ -17,7 +17,7 @@ public class AgregarMuebleServlet extends HttpServlet{
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-  
+        request.setCharacterEncoding("UTF-8");
         try{
             String nombreMueble = request.getParameter("txtnombre");
             BigDecimal precio = new BigDecimal(request.getParameter("txtprecio"));

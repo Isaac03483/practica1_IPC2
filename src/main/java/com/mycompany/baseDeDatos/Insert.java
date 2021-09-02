@@ -88,6 +88,7 @@ public class Insert {
         query.setString(2, devolucion.getIdentificadorMueble());
         query.setDate(3, java.sql.Date.valueOf(new SimpleDateFormat(com.mycompany.operaciones.Constante.FORMATO_FECHA_SQL).format(devolucion.getFecha())));
         query.setBigDecimal(4, devolucion.getPerdida());
+        query.setString(5, devolucion.getNit());
         query.executeUpdate();
      
     }
@@ -95,9 +96,11 @@ public class Insert {
     protected void insertarCaja(com.mycompany.objetos.ventas.Caja caja)throws SQLException{
         query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.INSERT_CAJA);
         query.setString(1, caja.getIdentificador());
-        query.setString(2, caja.getTipoRegistro().getTipo());
-        query.setBigDecimal(3, caja.getGanancia());
-        query.setBigDecimal(4, caja.getPerdida());
+        query.setString(2, caja.getUsuario());
+        query.setString(3, caja.getTipoRegistro().getTipo());
+        query.setBigDecimal(4, caja.getGanancia());
+        query.setBigDecimal(5, caja.getPerdida());
+        query.setDate(6, java.sql.Date.valueOf(new SimpleDateFormat(com.mycompany.operaciones.Constante.FORMATO_FECHA_SQL).format(caja.getFechaRegistro())));
         query.executeUpdate();
     }
 

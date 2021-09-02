@@ -1,5 +1,7 @@
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/operaciones/ExporteCsv.java
+/home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/AgregarDevolucionServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/operaciones/CargaDatos.java
+/home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/ModificarUsuarioServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/ConsultaCompraClienteServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/AgregarPiezaServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/AgregarUsuarioServlet.java
@@ -12,6 +14,7 @@
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/objetos/ventas/Caja.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/enums/TipoRegistro.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/objetos/fabrica/Pieza.java
+/home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/ConsultaDevolucionClienteServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/AgregarVentaServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/enums/TipoUsuario.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/objetos/ventas/Compra.java

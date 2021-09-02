@@ -19,7 +19,7 @@ public class AgregarPiezaServlet extends HttpServlet{
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-
+        request.setCharacterEncoding("UTF-8");
         String nombrePieza = request.getParameter("txtnombre");
         String precio = request.getParameter("txtprecio");
         String unidades = request.getParameter("txtunidades");

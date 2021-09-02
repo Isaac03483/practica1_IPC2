@@ -10,12 +10,12 @@ import com.mycompany.objetos.fabrica.Mueble;
 import com.mycompany.objetos.fabrica.Pieza;
 import com.mycompany.objetos.ventas.Cliente;
 import com.mycompany.objetos.ventas.Compra;
+import com.mycompany.objetos.ventas.Devolucion;
 import com.mycompany.objetos.ventas.MuebleEnsamblado;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 
 public class Select {
     
@@ -53,7 +53,7 @@ public class Select {
         return resultado;
     }
     
-    public ResultSet    selectCantidadPiezasOrdenadas(String orden){
+    public ResultSet selectCantidadPiezasOrdenadas(String orden){
         ResultSet resultado = null;
         try {
             query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_PIEZAS_ORDENADAS+orden);
@@ -93,10 +93,39 @@ public class Select {
 
         ResultSet resultado = null;
         try {
-            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_COMPRA_CLIENTE);
+            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_COMPRAS_CLIENTE);
             query.setString(1, nit);
             query.setString(2, fechaInicial);
             query.setString(3, fechaFinal);
+            resultado = query.executeQuery();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return resultado;
+    }
+
+    public ResultSet selectDevoluciones(String nit, String fechaInicial, String fechaFinal){
+
+        ResultSet resultado = null;
+        try {
+            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_DEVOLUCION_FECHA);
+            query.setString(1, nit);
+            query.setString(2, fechaInicial);
+            query.setString(3, fechaFinal);
+            resultado = query.executeQuery();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return resultado;
+    }
+
+    public ResultSet selectCompra(int numeroCompra){
+        ResultSet resultado = null;
+        try {
+            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_COMPRA);
+            query.setInt(1, numeroCompra);
             resultado = query.executeQuery();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
@@ -172,7 +201,7 @@ public class Select {
         }
         return resultado;
     }
-
+/*
     public ResultSet selectCantidadTotalPiezas(int cantidadPiezas){
         ResultSet resultado = null;
         try {
@@ -184,7 +213,7 @@ public class Select {
             e.printStackTrace();
         }
         return resultado;
-    }
+    }*/
 
     public ResultSet selectUsuario(String usuario){
         ResultSet resultado = null;
@@ -479,6 +508,59 @@ public class Select {
         }
 
         return compras;
+    }
+
+    public Compra getCompra(int numeroCompra){
+        Compra compra = null;
+        ResultSet resultadoBusqueda = selectCompra(numeroCompra);
+
+        try {
+            if(resultadoBusqueda.next()){
+                compra = new Compra(resultadoBusqueda.getInt("registro_compra"), resultadoBusqueda.getString("nombre_usuario"), resultadoBusqueda.getString("identificador_mueble"), resultadoBusqueda.getString("nit"), resultadoBusqueda.getDate("fecha_compra"), resultadoBusqueda.getBigDecimal("total"));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return compra;
+    }
+
+    public List<Devolucion> getDevoluciones(String nit, String fechaInicial, String fechaFinal){
+        List<Devolucion> devolucion = new ArrayList<>();
+        ResultSet resultadoDevolucion = selectDevoluciones(nit, fechaInicial,fechaFinal);
+
+        try {
+
+            while(resultadoDevolucion.next()){
+                devolucion.add(new Devolucion(resultadoDevolucion.getInt("registro_devolucion"),resultadoDevolucion.getString("nit"), resultadoDevolucion.getString("identificador_mueble"), resultadoDevolucion.getDate("fecha_devolucion"), resultadoDevolucion.getBigDecimal("perdida")));
+            }
+
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch(NullPointerException e){
+           System.err.println("Error nulo en fechas");
+        }
+
+        return devolucion;
+    }
+
+    public List<Pieza> getPiezasPorAcabar(){
+        List<Pieza> piezas = new ArrayList<>();
+
+        ResultSet listaPiezas = selectPiezasPorAcabar();
+
+        try {
+            while(listaPiezas.next()){
+                piezas.add(new Pieza(listaPiezas.getString("tipo_pieza"), listaPiezas.getInt("total")));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return piezas;
     }
     
 }

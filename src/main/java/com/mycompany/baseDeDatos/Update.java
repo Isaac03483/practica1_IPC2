@@ -63,6 +63,18 @@ public class Update {
             e.printStackTrace();
         }
     }
+    public void updatePasswordUsuario(String passwordNueva, String nombreUsuario, String passwordVieja){
+        try {
+            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.UPDATE_PASSWORD_USUARIO);
+            query.setString(1, passwordNueva);
+            query.setString(2, nombreUsuario);
+            query.setString(3, passwordVieja);
+            query.executeUpdate();
+        } catch (SQLException e){
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
     public void updateInformacionPieza(com.mycompany.objetos.fabrica.Pieza piezaAntigua, com.mycompany.objetos.fabrica.Pieza piezaNueva){
         try {

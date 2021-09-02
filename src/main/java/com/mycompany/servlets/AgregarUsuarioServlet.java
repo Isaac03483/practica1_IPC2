@@ -20,7 +20,7 @@ public class AgregarUsuarioServlet extends HttpServlet{
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-        
+        request.setCharacterEncoding("UTF-8");
         String nombre = request.getParameter("txtnombre");
 
         Select select = new Select();
@@ -54,8 +54,7 @@ public class AgregarUsuarioServlet extends HttpServlet{
         response.sendRedirect("/coden_bugs/administracion/agregarUsuario.jsp");
     }
 
-    private boolean verificarPassword(String password, String verificacion){
-
+    public static boolean verificarPassword(String password, String verificacion){
         return password.equals(verificacion) && password!=null;
     }
 

@@ -19,7 +19,7 @@ public class ModificarPiezaServlet extends HttpServlet{
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-
+        request.setCharacterEncoding("UTF-8");
         String informacionPieza = request.getParameter("tipo_pieza");
         System.out.println(informacionPieza);
 
@@ -63,7 +63,7 @@ public class ModificarPiezaServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-
+        request.setCharacterEncoding("UTF-8");
         Update update = new Update();
         String nombre = request.getParameter("textonombre");
         String unidades = request.getParameter("textounidades");

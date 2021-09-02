@@ -16,9 +16,9 @@ public enum TipoRegistro {
     public String toString(){return this.getTipo();}
 
     public static TipoRegistro evaluar(String dato){
-        if(TipoRegistro.GANANCIA.getTipo().equals(dato)){
+        if(TipoRegistro.GANANCIA.getTipo().equalsIgnoreCase(dato)){
             return TipoRegistro.GANANCIA;
-        } else if(TipoRegistro.PERDIDA.getTipo().equals(dato)){
+        } else if(TipoRegistro.PERDIDA.getTipo().equalsIgnoreCase(dato)){
             return TipoRegistro.PERDIDA;
         }
         return null;

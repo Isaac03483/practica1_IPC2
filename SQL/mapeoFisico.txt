@@ -61,27 +61,28 @@ CREATE TABLE compra (
     total DECIMAL (7,3) NOT NULL,
     CONSTRAINT nombre_usuario_fk FOREIGN KEY (nombre_usuario)
     REFERENCES usuario(nombre_usuario),
-    CONSTRAINT identificador_mueble_fk FOREIGN KEY(identificador_mueble)
+    CONSTRAINT identificador_compra_fk FOREIGN KEY (identificador_mueble)
     REFERENCES mueble_ensamblado(identificador_unico)
 );
 
 CREATE TABLE devolucion (
     registro_devolucion INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nit VARCHAR(45) NOT NULL,
     identificador_mueble VARCHAR(45) NOT NULL,
     fecha_devolucion DATE NOT NULL,
     perdida DECIMAL (7,3) NOT NULL,
-    CONSTRAINT identificador_devuelto_fk FOREIGN KEY(identificador_mueble)
+    CONSTRAINT identificador_devolucion_fk FOREIGN KEY (identificador_mueble)
     REFERENCES mueble_ensamblado(identificador_unico)
 );
 
 CREATE TABLE caja (
+	registro_caja INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nombre_usuario VARCHAR(45) NOT NULL,
 	identificador_mueble VARCHAR(45) NOT NULL,
+    fecha_registro DATE NOT NULL,
 	tipo_registro ENUM('ganancia','perdida') NOT NULL,
 	ganancia DECIMAL(7,3) DEFAULT 0,
 	perdida DECIMAL(7,3) DEFAULT 0,
-	PRIMARY KEY(identificador_mueble, tipo_registro),
-	CONSTRAINT identificador_compra_fk FOREIGN KEY (identificador_mueble)
-	REFERENCES compra(identificador_mueble),
-	CONSTRAINT identificador_devolucion_fk FOREIGN KEY (identificador_mueble)
-	REFERENCES devolucion(identificador_mueble)
-);
+	CONSTRAINT identificador_mueble_fk FOREIGN KEY(identificador_mueble)
+    REFERENCES mueble_ensamblado(identificador_unico)
+); 

@@ -1,14 +1,15 @@
 package com.mycompany.servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name="ConsultaCompraClienteServlet", urlPatterns = {"/ventas/consulta-compra-cliente-servlet"})
-public class ConsultaCompraClienteServlet extends HttpServlet{
+@WebServlet(name="ConsultaDevolucionClienteServlet", urlPatterns = {"/ventas/consulta-devolucion-cliente-servlet"})
+public class ConsultaDevolucionClienteServlet extends HttpServlet{
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
@@ -21,6 +22,6 @@ public class ConsultaCompraClienteServlet extends HttpServlet{
         request.setAttribute("fechaFinal", fechaFinal);
         request.setAttribute("nit",nit);
 
-        request.getRequestDispatcher("/ventas/consultaCompraCliente.jsp").forward(request, response);
+        request.getRequestDispatcher("/ventas/consultaDevolucion.jsp").forward(request, response);
     }
 }

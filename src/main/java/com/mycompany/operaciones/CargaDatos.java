@@ -1,10 +1,10 @@
 package com.mycompany.operaciones;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -23,19 +23,16 @@ import com.mycompany.objetos.ventas.MuebleEnsamblado;
 
 public class CargaDatos {
     
-    private File archivoAProcesar;
-    private Conexion conexion;
+    private InputStream archivoAProcesar;
     private List<String> errores = new ArrayList<>();
     /**
      * constructor que almacena el archivo y la ventana que contiene la carga de archivos
      * @param archivoAProcesar
      * @param ventana
      */
-    public CargaDatos(File archivoAProcesar){
+    public CargaDatos(InputStream archivoAProcesar){
 
         this.archivoAProcesar = archivoAProcesar;
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n"+archivoAProcesar.getAbsolutePath());
-        Conexion conexion = new Conexion();
         
     }
 
@@ -47,7 +44,7 @@ public class CargaDatos {
      */
     public List<String> leerArchivo() throws IOException{
 
-        BufferedReader lector = new BufferedReader(new FileReader(this.archivoAProcesar));
+        BufferedReader lector = new BufferedReader(new InputStreamReader(this.archivoAProcesar));
 
         String auxiliar = lector.readLine();
         int posicion;
