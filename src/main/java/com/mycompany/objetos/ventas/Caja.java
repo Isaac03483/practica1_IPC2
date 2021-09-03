@@ -5,12 +5,14 @@ import java.util.Date;
 
 public class Caja {
     
+    private int registroCaja;
     private String identificadorMueble;
     private String nombreUsuario;
     private Date fechaRegistro;
     private com.mycompany.enums.TipoRegistro tipo;
     private BigDecimal ganancia;
     private BigDecimal perdida;
+    private int cantidadGanancias;
 
     {
         ganancia = new BigDecimal(0);
@@ -25,6 +27,23 @@ public class Caja {
         this.ganancia=ganancia;
         this.perdida = perdida;
     }
+
+    public Caja(int registro, String nombreUsuario, String identificador, Date fechaRegistro, BigDecimal ganancia){
+        this.registroCaja =registro;
+        this.nombreUsuario = nombreUsuario;
+        this.identificadorMueble = identificador;
+        this.fechaRegistro = fechaRegistro;
+        this.ganancia=ganancia;
+    }
+
+    public Caja(String nombreUsuario, int cantidadGanancias){
+        this.nombreUsuario = nombreUsuario;
+        this.cantidadGanancias = cantidadGanancias;
+    }
+
+    public int getRegistro(){return this.registroCaja;}
+
+    public int getCantidad(){return this.cantidadGanancias;}
 
     public String getUsuario(){return this.nombreUsuario;}
 

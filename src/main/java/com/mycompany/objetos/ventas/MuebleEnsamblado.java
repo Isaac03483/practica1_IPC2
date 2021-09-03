@@ -11,7 +11,13 @@ public class MuebleEnsamblado {
     private Date fechaEnsamble;
     private BigDecimal costo;
     private com.mycompany.enums.EstadoMueble estado;
+    private int cantidad;
 
+    public MuebleEnsamblado(String muebleEnsamblar, int cantidad){
+        this.muebleEnsamblar = muebleEnsamblar;
+        this.cantidad = cantidad;
+    }
+    
     public MuebleEnsamblado(String muebleEnsamblar,String usuarioEnsamblo, Date fechaEnsamble, BigDecimal costo){
 
         this.idenficadorUnico = com.mycompany.operaciones.Generador.generador();
@@ -43,4 +49,6 @@ public class MuebleEnsamblado {
     public com.mycompany.enums.EstadoMueble getEstadoMueble(){return this.estado;}
 
     public String getMuebleEnsamblar(){return this.muebleEnsamblar;}
+
+    public int getCantidad(){return this.cantidad;}
 }

@@ -1,11 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="com.mycompany.baseDeDatos.Select"%>
+<%@page import="com.mycompany.operaciones.Obtencion"%>
 <%@page import="com.mycompany.objetos.administracion.Usuario"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 
 <%
-    List<Usuario> listaUsuarios= (ArrayList<Usuario>) new Select().getUsuariosActivos();
+    List<Usuario> listaUsuarios= (ArrayList<Usuario>) new Obtencion().getUsuariosActivos();
 %>
 <html>
 

@@ -19,6 +19,7 @@
                         <a href="/coden_bugs/administracion/agregarMueble.jsp" class="btn btn-block">Agregar nuevo Mueble</a><br>
                         <a href="/coden_bugs/administracion/agregarUsuario.jsp" class="btn btn-block">Agregar nuevo Usuario</a><br>
                         <a href="/coden_bugs/administracion/modificarUsuario.jsp" class="btn btn-block">Modificar Usuario existente</a><br>
+                        <a href="/coden_bugs/administracion/verReportes.jsp" class="btn btn-block">Reportes</a><br>
                         <input type="submit" class="btn btn-block" value="Cerrar Sesión">
                     </div>
                 </div>

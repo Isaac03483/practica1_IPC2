@@ -11,6 +11,12 @@ public class Compra {
     private String nit;
     private Date fechaCompra;
     private BigDecimal total;
+    private int cantidadVentas;
+
+    public Compra(String nombreUsuario, int cantidadVentas){
+        this.nombreUsuario=nombreUsuario;
+        this.cantidadVentas=cantidadVentas;
+    }
 
     public Compra(String nombreUsuario, String identificadorMueble, String nit, Date fechaCompra, BigDecimal total){
         this.nombreUsuario=nombreUsuario;
@@ -29,6 +35,8 @@ public class Compra {
         this.fechaCompra=fechaCompra;
         this.total=total;
     }
+
+    public int getCantidad(){return this.cantidadVentas;}
 
     public int getRegistroCompra(){return this.registroCompra;}
 

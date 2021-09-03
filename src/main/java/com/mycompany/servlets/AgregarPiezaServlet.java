@@ -25,7 +25,7 @@ public class AgregarPiezaServlet extends HttpServlet{
         String unidades = request.getParameter("txtunidades");
 
         try{
-            Conexion.insertar(new Pieza(nombrePieza, new BigDecimal(precio), Integer.parseInt(unidades)));
+            Conexion.insertar(new Pieza(nombrePieza.toLowerCase(), new BigDecimal(precio), Integer.parseInt(unidades)));
         } catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Los campos precio y unidades solo aceptan datos tipo numérico.", "Coden Bugs", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException e) {

@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
 import com.mycompany.baseDeDatos.Conexion;
-import com.mycompany.baseDeDatos.Select;
 import com.mycompany.baseDeDatos.Update;
 import com.mycompany.enums.EstadoMueble;
 import com.mycompany.enums.TipoRegistro;
@@ -24,6 +23,7 @@ import com.mycompany.objetos.ventas.Caja;
 import com.mycompany.objetos.ventas.Compra;
 import com.mycompany.objetos.ventas.Devolucion;
 import com.mycompany.objetos.ventas.MuebleEnsamblado;
+import com.mycompany.operaciones.Obtencion;
 
 @WebServlet(name ="AgregarDevolucionServlet", urlPatterns = {"/ventas/agregar-devolucion-servlet"})
 public class AgregarDevolucionServlet extends HttpServlet{
@@ -34,7 +34,7 @@ public class AgregarDevolucionServlet extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         request.setCharacterEncoding("UTF-8");
         numeroCompra = Integer.parseInt(request.getParameter("numero_compra"));
-        Compra resultadoBusqueda = new Select().getCompra(numeroCompra);
+        Compra resultadoBusqueda = new Obtencion().getCompra(numeroCompra);
 
         if(resultadoBusqueda != null){
             request.setAttribute("identificadorUnico", resultadoBusqueda.getIdentificadorMueble());
@@ -50,12 +50,12 @@ public class AgregarDevolucionServlet extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)throws IOException, ServletException{
         request.setCharacterEncoding("UTF-8");
-        Compra resultadoBusqueda = new Select().getCompra(numeroCompra);
+        Compra resultadoBusqueda = new Obtencion().getCompra(numeroCompra);
         if(resultadoBusqueda != null){
             if(garantiaActiva(resultadoBusqueda.getFecha())){
                 System.out.println("No han pasado 10 días");
     
-                MuebleEnsamblado muebleEnsamblado = new Select().getMuebleSelecionado(resultadoBusqueda.getIdentificadorMueble());
+                MuebleEnsamblado muebleEnsamblado = new Obtencion().getMuebleSelecionado(resultadoBusqueda.getIdentificadorMueble());
     
                 if(muebleEnsamblado.getEstadoMueble() == EstadoMueble.VENDIDO){
                     double perdida = muebleEnsamblado.getCosto().doubleValue() / 3;

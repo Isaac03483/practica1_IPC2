@@ -19,6 +19,7 @@ import com.mycompany.objetos.ventas.Caja;
 import com.mycompany.objetos.ventas.Cliente;
 import com.mycompany.objetos.ventas.Compra;
 import com.mycompany.objetos.ventas.MuebleEnsamblado;
+import com.mycompany.operaciones.Obtencion;
 
 @WebServlet(name="AgregarVentaServlet", urlPatterns={"/ventas/agregar-venta-servlet"})
 public class AgregarVentaServlet extends HttpServlet{
@@ -33,7 +34,7 @@ public class AgregarVentaServlet extends HttpServlet{
         String id = request.getParameter("idmueble");
 
         if(nit != null && !nit.equals("")){
-            cliente = new Select().getCliente(nit);
+            cliente = new Obtencion().getCliente(nit);
 
             if(cliente != null){
                 request.setAttribute("nit", cliente.getNit());
@@ -57,7 +58,7 @@ public class AgregarVentaServlet extends HttpServlet{
         }
 
         if(id != null && !id.equals("")){
-            mueble = new Select().getMuebleSelecionado(id);
+            mueble = new Obtencion().getMuebleSelecionado(id);
 
             if(mueble != null){
                 request.setAttribute("costo", mueble.getCosto());
@@ -106,7 +107,7 @@ public class AgregarVentaServlet extends HttpServlet{
     }
 
     private void guardarVenta(String nombreUsuario, String nit){
-        Mueble muebleBuscado = new Select().getMueble(mueble.getMuebleEnsamblar());
+        Mueble muebleBuscado = new Obtencion().getMueble(mueble.getMuebleEnsamblar());
         try {
             if(muebleBuscado.getPrecio().doubleValue() > mueble.getCosto().doubleValue()){
                 double ganancia = muebleBuscado.getPrecio().doubleValue() - mueble.getCosto().doubleValue();

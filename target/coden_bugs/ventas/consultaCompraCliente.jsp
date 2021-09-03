@@ -3,13 +3,13 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.mycompany.objetos.ventas.Cliente"%>
 <%@page import="com.mycompany.objetos.ventas.Compra"%>
-<%@page import="com.mycompany.baseDeDatos.Select"%>
+<%@page import="com.mycompany.operaciones.Obtencion"%>
 <%
-    List<Cliente> listaClientes = (ArrayList<Cliente>) new Select().getClientes();
+    List<Cliente> listaClientes = (ArrayList<Cliente>) new Obtencion().getClientes();
     String nit = (String) request.getAttribute("nit");
     String fechaInicial = (String) request.getAttribute("fechaInicial");
     String fechaFinal = (String) request.getAttribute("fechaFinal");
-    List<Compra> listaCompras = (ArrayList<Compra>) new Select().getCompras(nit, fechaInicial, fechaFinal);
+    List<Compra> listaCompras = (ArrayList<Compra>) new Obtencion().getCompras(nit, fechaInicial, fechaFinal);
 
 %>
 

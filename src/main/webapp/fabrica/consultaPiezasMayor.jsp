@@ -1,12 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="com.mycompany.baseDeDatos.Select"%>
+<%@page import="com.mycompany.operaciones.Obtencion"%>
 <%@page import="com.mycompany.objetos.fabrica.Pieza"%>
 <%@page import="com.mycompany.operaciones.Constante"%>
 
 <%
-    List<Pieza> listaPiezas = (ArrayList<Pieza>)new Select().getPiezasOrdenadas(Constante.ASCENDENTE);
+    List<Pieza> listaPiezas = (ArrayList<Pieza>)new Obtencion().getPiezasOrdenadas(Constante.ASCENDENTE);
 %>
 <html>
 

@@ -21,7 +21,7 @@ public class AgregarMuebleServlet extends HttpServlet{
         try{
             String nombreMueble = request.getParameter("txtnombre");
             BigDecimal precio = new BigDecimal(request.getParameter("txtprecio"));
-            Conexion.insertar(new Mueble(nombreMueble, precio));
+            Conexion.insertar(new Mueble(nombreMueble.toLowerCase(), precio));
             response.sendRedirect("/coden_bugs/fabrica/agregarMueble.jsp");
             System.out.println("Mueble agregado");
         } catch(Exception e){

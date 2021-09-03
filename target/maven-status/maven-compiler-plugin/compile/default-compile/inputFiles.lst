@@ -4,10 +4,14 @@
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/ModificarUsuarioServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/ConsultaCompraClienteServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/AgregarPiezaServlet.java
+/home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/ReporteVentasServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/AgregarUsuarioServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/operaciones/Constante.java
+/home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/ReporteMuebleVendidoServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/baseDeDatos/Conexion.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/ModificarPiezaServlet.java
+/home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/operaciones/Obtencion.java
+/home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/ReporteGananciasServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/enums/EstadoMueble.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/CerrarSesionServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/baseDeDatos/Select.java
@@ -17,9 +21,12 @@
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/ConsultaDevolucionClienteServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/AgregarVentaServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/enums/TipoUsuario.java
+/home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/ReporteUsuarioGananciaServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/objetos/ventas/Compra.java
+/home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/ReporteDevolucionesServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/operaciones/Generador.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/objetos/fabrica/EnsamblePieza.java
+/home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/ReporteUsuarioVentaServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/objetos/ventas/Cliente.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/servlets/LoginServlet.java
 /home/isaac/Escritorio/2021/practica1_IPC2/coden_bugs/src/main/java/com/mycompany/baseDeDatos/Update.java

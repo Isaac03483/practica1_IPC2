@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
 import com.mycompany.baseDeDatos.Conexion;
-import com.mycompany.baseDeDatos.Select;
 import com.mycompany.enums.TipoUsuario;
 import com.mycompany.objetos.administracion.Usuario;
+import com.mycompany.operaciones.Obtencion;
 
 @WebServlet(name = "AgregarUsuarioServlet", urlPatterns = {"/administracion/agregar-usuario-servlet"})
 public class AgregarUsuarioServlet extends HttpServlet{
@@ -23,10 +23,10 @@ public class AgregarUsuarioServlet extends HttpServlet{
         request.setCharacterEncoding("UTF-8");
         String nombre = request.getParameter("txtnombre");
 
-        Select select = new Select();
+        Obtencion obtencion = new Obtencion();
         
         
-        if(select.getUsuario(nombre) == null){
+        if(obtencion.getUsuario(nombre) == null){
 
             String password = request.getParameter("txtpass");
             String verificacion = request.getParameter("txtver");

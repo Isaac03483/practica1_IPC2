@@ -39,5 +39,4 @@ function habilitarSelect(check){
         document.getElementById("area_usuario").disabled=true;
         check.value="0";
     }
-    alert(check.value);
 }

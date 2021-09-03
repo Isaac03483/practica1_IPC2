@@ -2,10 +2,10 @@
 <%@page import="com.mycompany.objetos.fabrica.Pieza"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.mycompany.baseDeDatos.Select"%>
+<%@page import="com.mycompany.operaciones.Obtencion"%>
 
 <%
-    List<Pieza> listaPiezas = (ArrayList<Pieza>) new Select().getPiezasSeparadas();
+    List<Pieza> listaPiezas = (ArrayList<Pieza>) new Obtencion().getPiezasSeparadas();
 %>
 
 <html>
@@ -35,7 +35,7 @@
 
                                 <%
                                     for(int i = 0; i < listaPiezas.size(); i++){
-                                        out.print("<option value="+"\""+listaPiezas.get(i).getTipoPieza()+"-"+listaPiezas.get(i).getPrecio()+"\">"+listaPiezas.get(i).getTipoPieza()+" "+listaPiezas.get(i).getPrecio()+"</option>");
+                                        out.print("<option value=\""+listaPiezas.get(i).getTipoPieza()+"Λ"+listaPiezas.get(i).getPrecio()+"\">"+listaPiezas.get(i).getTipoPieza()+" "+listaPiezas.get(i).getPrecio()+"</option>");
                                     }
                                 %>
                             </select><br>

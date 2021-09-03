@@ -2,10 +2,10 @@
 <%@page import="com.mycompany.objetos.ventas.MuebleEnsamblado"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.mycompany.baseDeDatos.Select"%>
+<%@page import="com.mycompany.operaciones.Obtencion"%>
 
 <%
-    List<MuebleEnsamblado> listaMuebles = (ArrayList<MuebleEnsamblado>) new Select().getMueblesDisponibles("ensamblado");
+    List<MuebleEnsamblado> listaMuebles = (ArrayList<MuebleEnsamblado>) new Obtencion().getMueblesDisponibles("ensamblado");
 %>
 
 <html>

@@ -1,20 +1,13 @@
 package com.mycompany.baseDeDatos;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import com.mycompany.enums.EstadoMueble;
-import com.mycompany.enums.TipoUsuario;
-import com.mycompany.objetos.administracion.Usuario;
-import com.mycompany.objetos.fabrica.Mueble;
-import com.mycompany.objetos.fabrica.Pieza;
-import com.mycompany.objetos.ventas.Cliente;
-import com.mycompany.objetos.ventas.Compra;
-import com.mycompany.objetos.ventas.Devolucion;
-import com.mycompany.objetos.ventas.MuebleEnsamblado;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.mysql.cj.protocol.Resultset;
+import com.mysql.cj.xdevapi.Result;
 
 
 public class Select {
@@ -201,19 +194,6 @@ public class Select {
         }
         return resultado;
     }
-/*
-    public ResultSet selectCantidadTotalPiezas(int cantidadPiezas){
-        ResultSet resultado = null;
-        try {
-            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_CANTIDAD_PIEZAS);
-            query.setInt(1, cantidadPiezas);
-            resultado = query.executeQuery();
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return resultado;
-    }*/
 
     public ResultSet selectUsuario(String usuario){
         ResultSet resultado = null;
@@ -290,277 +270,129 @@ public class Select {
         return resultado;
     }
 
-    public List<Mueble> getMuebles(){
-        List<Mueble> muebles = new ArrayList<>();
-        ResultSet datosMuebles = selectMueblesAll();
-
+    public ResultSet selectReporteVentas(String fechaInicial, String fechaFinal){
+        ResultSet resultado = null;
+        System.out.println(fechaInicial+" "+fechaFinal);
         try {
-            while(datosMuebles.next()){
-                muebles.add(new Mueble(datosMuebles.getString("nombre_mueble"), datosMuebles.getBigDecimal("precio")));
+            if(fechaFinal !=null && fechaInicial != null){
+                query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_REPORTE_VENTAS);
+                query.setString(1, fechaInicial);
+                query.setString(2, fechaFinal);
+            } else {
+                query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_REPORTE_VENTAS_GENERAL);
             }
+            resultado = query.executeQuery();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-        return muebles;
-    }
-
-    public List<Pieza> getPiezasOrdenadas(String orden){
-
-        List<Pieza> piezas = new ArrayList<>();
-        ResultSet datosPiezas = selectCantidadPiezasOrdenadas(orden);
-
-        try {
-            while(datosPiezas.next()){
-                piezas.add(new Pieza(datosPiezas.getString("tipo_pieza"), datosPiezas.getInt("Cantidad")));
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return piezas;
-    }
-
-    
-    public List<MuebleEnsamblado> getMueblesCreados(String orden){
-        List<MuebleEnsamblado> muebles = new ArrayList<>();
-        ResultSet listaMuebles = selectTodosMueblesEnsamblados(orden);
-
-        try {
-            while(listaMuebles.next()){
-                muebles.add(new MuebleEnsamblado(listaMuebles.getString("identificador_unico"), listaMuebles.getString("nombre_mueble"), listaMuebles.getString("usuario_ensamblo"),listaMuebles.getDate("fecha_ensamble"), listaMuebles.getBigDecimal("costo"), EstadoMueble.evaluar(listaMuebles.getString("estado"))));
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return muebles;
-    }
-
-    public List<Pieza> getPiezasSeparadas(){
-        List<Pieza> piezas = new ArrayList<>();
-        ResultSet listaPiezas = selectPiezas();
-
-        try {
-            while(listaPiezas.next()){
-                piezas.add(new Pieza(listaPiezas.getString("tipo_pieza"), listaPiezas.getBigDecimal("precio"), listaPiezas.getInt("cantidad")));
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return piezas;
-    }
-
-    public Usuario getUsuario(String nombreUsuario){
-        Usuario usuario = null;
-        ResultSet busqueda = selectUsuario(nombreUsuario);
-
-        try {
-            if(busqueda.next()){
-                usuario = new Usuario(nombreUsuario, busqueda.getString("password"), TipoUsuario.evaluar(busqueda.getString("tipo")));
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return usuario;
-    }
-
-    public List<Usuario> getUsuariosActivos(){
-
-        List<Usuario> usuarios = new ArrayList<>();
-        ResultSet listaUsuarios = selectUsuariosActivos();
-
-        try {
-            while(listaUsuarios.next()){
-                usuarios.add(new Usuario(listaUsuarios.getString("nombre_usuario"), listaUsuarios.getString("password"), TipoUsuario.evaluar(listaUsuarios.getString("tipo"))));
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return usuarios;
-    }
-
-    public List<MuebleEnsamblado> getMueblesDisponibles(String ensamblado){
-        List<MuebleEnsamblado> muebles = new ArrayList<>();
-        ResultSet listaMuebles = selectMueblesDisponibles(ensamblado);
-
-        try {
-            while(listaMuebles.next()){
-                muebles.add(new MuebleEnsamblado(listaMuebles.getString("identificador_unico"), listaMuebles.getString("nombre_mueble"), listaMuebles.getString("usuario_ensamblo"),listaMuebles.getDate("fecha_ensamble"), listaMuebles.getBigDecimal("costo"), EstadoMueble.evaluar(listaMuebles.getString("estado"))));
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return muebles;
-    }
-
-    public Mueble getMueble(String nombreMueble){
-        Mueble mueble=null;
-        ResultSet resultadoMueble = selectMueble(nombreMueble);
-
-        try {
-            if(resultadoMueble.next()){
-                mueble = new Mueble(resultadoMueble.getString("nombre_mueble"), resultadoMueble.getBigDecimal("precio"));
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } 
-
-        return mueble;
-    }
-
-    public MuebleEnsamblado getMuebleSelecionado(String id){
-        MuebleEnsamblado mueble=null;
-        ResultSet resultadoMueble = selectMuebleSeleccionado(id);
-
-        try {
-            if(resultadoMueble.next()){
-                mueble = new MuebleEnsamblado(resultadoMueble.getString("identificador_unico"), resultadoMueble.getString("nombre_mueble"), resultadoMueble.getString("usuario_ensamblo"), resultadoMueble.getDate("fecha_ensamble"), 
-                resultadoMueble.getBigDecimal("costo"), EstadoMueble.evaluar(resultadoMueble.getString("estado")));
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return mueble;
+        return  resultado;
     }
     
-    public Cliente getCliente(String nit){
-        Cliente cliente=null;
-        ResultSet resultadoCliente = selectCliente(nit);
-
+    public ResultSet selectReporteDevolucion(String fechaInicial, String fechaFinal){
+        ResultSet resultado = null;
         try {
-            if(resultadoCliente.next()){
-                cliente = new Cliente(resultadoCliente.getString("nombre"), resultadoCliente.getString("nit"), resultadoCliente.getString("direccion"), resultadoCliente.getString("municipio"), resultadoCliente.getString("departamento"));
+            if(fechaFinal !=null && fechaInicial != null){
+                query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_REPORTE_DEVOLUCION);
+                query.setString(1, fechaInicial);
+                query.setString(2, fechaFinal);
+            } else {
+                query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_REPORTE_DEVOLUCION_GENERAL);
             }
+            resultado = query.executeQuery();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-        return cliente;
+        return  resultado;
     }
 
-    public List<Cliente> getClientes(){
-        List<Cliente> clientes = new ArrayList<>();
-        ResultSet resultadoCliente = selectClientes();
-
+    public ResultSet selectReporteGanancia(String fechaInicial, String fechaFinal){
+        ResultSet resultado = null;
         try {
-            while(resultadoCliente.next()){
-                clientes.add(new Cliente(resultadoCliente.getString("nombre"), resultadoCliente.getString("nit"), resultadoCliente.getString("direccion"), resultadoCliente.getString("municipio"), resultadoCliente.getString("departamento")));
+            if(fechaFinal !=null && fechaInicial != null){
+                query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_REPORTE_GANANCIAS);
+                query.setString(1, fechaInicial);
+                query.setString(2, fechaFinal);
+            } else {
+                query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_REPORTE_GANANCIAS_GENERAL);
             }
+            resultado = query.executeQuery();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-        return clientes;
+        return  resultado;
     }
 
-    public List<Compra> getCompras(String nit, String fechaInicial, String fechaFinal){
-        List<Compra> compras = new ArrayList<>();
-        ResultSet resultadoCompras = selectCompras(nit, fechaInicial,fechaFinal);
-
+    public ResultSet selectReporteUsuarioGanancias(String fechaInicial, String fechaFinal){
+        ResultSet resultado = null;
         try {
-
-            while(resultadoCompras.next()){
-                compras.add(new Compra(resultadoCompras.getInt("registro_compra"),resultadoCompras.getString("nombre_usuario"), resultadoCompras.getString("identificador_mueble"), resultadoCompras.getString("nit"), resultadoCompras.getDate("fecha_compra"), resultadoCompras.getBigDecimal("total")));
+            if(fechaFinal !=null && fechaInicial != null){
+                query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_REPORTE_USUARIO_GANANCIAS);
+                query.setString(1, fechaInicial);
+                query.setString(2, fechaFinal);
+            } else {
+                query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_REPORTE_USUARIO_GANANCIAS_GENERAL);
             }
-
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch(NullPointerException e){
-           System.err.println("Error nulo en fechas");
-        }
-
-        return compras;
-    }
-
-    public List<Compra> getVentasDia(){
-        List<Compra> compras = new ArrayList<>();
-        ResultSet resultadoCompras = selectComprasDia();
-
-        try {
-
-            while(resultadoCompras.next()){
-                compras.add(new Compra(resultadoCompras.getInt("registro_compra"),resultadoCompras.getString("nombre_usuario"), resultadoCompras.getString("identificador_mueble"), resultadoCompras.getString("nit"), resultadoCompras.getDate("fecha_compra"), resultadoCompras.getBigDecimal("total")));
-            }
-
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch(NullPointerException e){
-           System.err.println("Error nulo en fechas");
-        }
-
-        return compras;
-    }
-
-    public Compra getCompra(int numeroCompra){
-        Compra compra = null;
-        ResultSet resultadoBusqueda = selectCompra(numeroCompra);
-
-        try {
-            if(resultadoBusqueda.next()){
-                compra = new Compra(resultadoBusqueda.getInt("registro_compra"), resultadoBusqueda.getString("nombre_usuario"), resultadoBusqueda.getString("identificador_mueble"), resultadoBusqueda.getString("nit"), resultadoBusqueda.getDate("fecha_compra"), resultadoBusqueda.getBigDecimal("total"));
-            }
+            resultado = query.executeQuery();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-        return compra;
+        return  resultado;
     }
 
-    public List<Devolucion> getDevoluciones(String nit, String fechaInicial, String fechaFinal){
-        List<Devolucion> devolucion = new ArrayList<>();
-        ResultSet resultadoDevolucion = selectDevoluciones(nit, fechaInicial,fechaFinal);
-
+    public ResultSet selectReporteUsuarioVentas(String fechaInicial, String fechaFinal){
+        ResultSet resultado = null;
         try {
-
-            while(resultadoDevolucion.next()){
-                devolucion.add(new Devolucion(resultadoDevolucion.getInt("registro_devolucion"),resultadoDevolucion.getString("nit"), resultadoDevolucion.getString("identificador_mueble"), resultadoDevolucion.getDate("fecha_devolucion"), resultadoDevolucion.getBigDecimal("perdida")));
+            if(fechaFinal !=null && fechaInicial != null){
+                query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_REPORTE_USUARIO_VENTAS);
+                query.setString(1, fechaInicial);
+                query.setString(2, fechaFinal);
+            } else {
+                query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_REPORTE_USUARIO_VENTAS_GENERAL);
             }
-
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch(NullPointerException e){
-           System.err.println("Error nulo en fechas");
-        }
-
-        return devolucion;
-    }
-
-    public List<Pieza> getPiezasPorAcabar(){
-        List<Pieza> piezas = new ArrayList<>();
-
-        ResultSet listaPiezas = selectPiezasPorAcabar();
-
-        try {
-            while(listaPiezas.next()){
-                piezas.add(new Pieza(listaPiezas.getString("tipo_pieza"), listaPiezas.getInt("total")));
-            }
+            resultado = query.executeQuery();
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-        return piezas;
+        return  resultado;
     }
-    
+
+
+    public ResultSet selectMuebleMasVendido(){
+        ResultSet resultado = null;
+        try {
+            
+            query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_MUEBLE_MAS_VENDIDO);
+            resultado = query.executeQuery();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return  resultado;
+    }
+
+    public ResultSet selectFacturaMuebleMasV(String nombreMueble, String fechaInicial, String fechaFinal){
+
+        ResultSet resultado = null;
+        try {
+            if(fechaFinal !=null && fechaInicial != null){
+                query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_FACTURA_MUEBLE_MAS_VENDIDO);
+                query.setString(1, nombreMueble);
+                query.setString(2, fechaInicial);
+                query.setString(3, fechaFinal);
+            } else {
+                query = Conexion.conexion.prepareStatement(com.mycompany.operaciones.Constante.SELECT_FACTURA_MUEBLE_MAS_VENDIDO_GENERAL);
+                query.setString(1, nombreMueble);
+            }
+            resultado = query.executeQuery();
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return  resultado;
+    }
 }

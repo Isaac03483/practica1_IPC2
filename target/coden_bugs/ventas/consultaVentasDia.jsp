@@ -5,9 +5,9 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.mycompany.objetos.ventas.Cliente"%>
 <%@page import="com.mycompany.objetos.ventas.Compra"%>
-<%@page import="com.mycompany.baseDeDatos.Select"%>
+<%@page import="com.mycompany.operaciones.Obtencion"%>
 <%
-    List<Compra> listaCompras = (ArrayList<Compra>) new Select().getVentasDia();
+    List<Compra> listaCompras = (ArrayList<Compra>) new Obtencion().getVentasDia();
 
 %>
 <html>

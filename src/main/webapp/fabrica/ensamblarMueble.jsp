@@ -1,11 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
-<%@page import="com.mycompany.baseDeDatos.Select"%>
+<%@page import="com.mycompany.operaciones.Obtencion"%>
 <%@page import="com.mycompany.objetos.fabrica.Mueble"%>
 
 <%
-    List<Mueble> listaMuebles = (ArrayList<Mueble>)new Select().getMuebles();
+    List<Mueble> listaMuebles = (ArrayList<Mueble>)new Obtencion().getMuebles();
 %>
 <html>
 

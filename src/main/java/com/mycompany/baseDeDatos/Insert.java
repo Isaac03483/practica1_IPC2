@@ -106,7 +106,7 @@ public class Insert {
 
     private void agregarPieza(com.mycompany.objetos.fabrica.Pieza pieza) throws SQLException{
         
-        if(new Select().selectPiezasIndividuales(pieza.getTipoPieza(), pieza.getPrecio()).next()){
+        if(new Select().selectPiezasIndividuales(volverMinuscula(pieza.getTipoPieza()), pieza.getPrecio()).next()){
 
             Update update = new Update();
             update.updateAumentarCantidad(pieza.getCantidad(), volverMinuscula(pieza.getTipoPieza()), pieza.getPrecio());

@@ -124,4 +124,44 @@
     <servlet-name>ModificarUsuarioServlet</servlet-name>
     <url-pattern>/administracion/modificar-usuario-servlet</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReporteVentasServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ReporteVentasServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReporteVentasServlet</servlet-name>
+    <url-pattern>/administracion/reporte-ventas-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReporteGananciasServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ReporteGananciasServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReporteGananciasServlet</servlet-name>
+    <url-pattern>/administracion/reporte-ganancias-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReporteDevolucionesServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ReporteDevolucionesServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReporteDevolucionesServlet</servlet-name>
+    <url-pattern>/administracion/reporte-devoluciones-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReporteMuebleVendidoServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ReporteMuebleVendidoServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReporteMuebleVendidoServlet</servlet-name>
+    <url-pattern>/administracion/reporte-mueble-vendido-servlet</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -2,6 +2,10 @@ package com.mycompany.operaciones;
 
 public class Constante {
     
+    /**
+     * Clase que contiene todas las constantes.
+     */
+    
     public static final String USR = "root";
     public static final String PASSWORD = "L@luz1414";
     public static final String URL_MYSQL = "jdbc:mysql://localhost:3306/coden_bugs";
@@ -51,6 +55,19 @@ public class Constante {
     public static final String SELECT_MUEBLE_DISPONIBLE = "SELECT * FROM mueble_ensamblado WHERE estado = ?";
     public static final String SELECT_DETALLES_COMPRA = "SELECT * FROM compra WHERE nit = ?";
     public static final String SELECT_VENTAS_DEL_DIA = "SELECT * FROM compra WHERE fecha_compra = CURDATE()";
+    public static final String SELECT_REPORTE_VENTAS = "SELECT * FROM compra WHERE fecha_compra BETWEEN ? AND ?";
+    public static final String SELECT_REPORTE_VENTAS_GENERAL = "SELECT * FROM compra";
+    public static final String SELECT_REPORTE_DEVOLUCION = "SELECT * FROM devolucion WHERE fecha_devolucion BETWEEN ? AND ?";
+    public static final String SELECT_REPORTE_DEVOLUCION_GENERAL = "SELECT * FROM devolucion";
+    public static final String SELECT_REPORTE_GANANCIAS = "SELECT nombre_usuario, registro_caja, fecha_registro, ganancia , identificador_mueble FROM caja WHERE tipo_registro = 'ganancia' AND fecha_registro BETWEEN ? AND ?";
+    public static final String SELECT_REPORTE_GANANCIAS_GENERAL = "SELECT nombre_usuario, registro_caja, fecha_registro, ganancia , identificador_mueble FROM caja WHERE tipo_registro = 'ganancia'";
+    public static final String SELECT_REPORTE_USUARIO_VENTAS = "SELECT nombre_usuario, COUNT(nombre_usuario) AS 'Cantidad de Ventas' FROM compra WHERE fecha_compra BETWEEN ? AND ? GROUP BY nombre_usuario";
+    public static final String SELECT_REPORTE_USUARIO_VENTAS_GENERAL = "SELECT nombre_usuario, COUNT(nombre_usuario) AS 'Cantidad de Ganancias' FROM compra GROUP BY nombre_usuario";
+    public static final String SELECT_REPORTE_USUARIO_GANANCIAS = "SELECT nombre_usuario, COUNT(nombre_usuario) AS 'Cantidad de Ganancias' FROM caja WHERE tipo_registro ='ganancia' AND fecha_registro BETWEEN ? AND ? GROUP BY nombre_usuario";
+    public static final String SELECT_REPORTE_USUARIO_GANANCIAS_GENERAL = "SELECT nombre_usuario, COUNT(nombre_usuario) AS 'Cantidad de Ganancias' FROM caja WHERE tipo_registro ='ganancia' GROUP BY nombre_usuario";
+    public static final String SELECT_MUEBLE_MAS_VENDIDO = "SELECT nombre_mueble, COUNT(identificador_unico) AS cantidad from mueble_ensamblado WHERE estado='vendido' GROUP BY nombre_mueble";
+    public static final String SELECT_FACTURA_MUEBLE_MAS_VENDIDO= "SELECT compra.registro_compra, compra.nombre_usuario, compra.identificador_mueble, compra.nit, compra.fecha_compra, compra.total FROM compra INNER JOIN mueble_ensamblado WHERE compra.identificador_mueble = mueble_ensamblado.identificador_unico AND mueble_ensamblado.estado='vendido' AND mueble_ensamblado.nombre_mueble = ? AND compra.fecha_compra BETWEEN ? AND ?";
+    public static final String SELECT_FACTURA_MUEBLE_MAS_VENDIDO_GENERAL= "SELECT compra.registro_compra, compra.nombre_usuario, compra.identificador_mueble, compra.nit, compra.fecha_compra, compra.total FROM compra INNER JOIN mueble_ensamblado WHERE compra.identificador_mueble = mueble_ensamblado.identificador_unico AND mueble_ensamblado.estado='vendido' AND mueble_ensamblado.nombre_mueble = ?";
     public static final String SELECT_CLIENTE = "SELECT * FROM cliente WHERE nit =?";
     public static final String SELECT_USUARIO = "SELECT password, tipo FROM usuario WHERE nombre_usuario =?";
     public static final String SELECT_USUARIOS_ACTIVOS = "SELECT * FROM usuario WHERE tipo != 'cancelado'";

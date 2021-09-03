@@ -8,9 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.mycompany.baseDeDatos.Select;
 import com.mycompany.baseDeDatos.Update;
 import com.mycompany.objetos.fabrica.Pieza;
+import com.mycompany.operaciones.Obtencion;
 
 @WebServlet(name="ModificarPiezaServlet", urlPatterns = {"/fabrica/modificar-pieza-servlet"})
 public class ModificarPiezaServlet extends HttpServlet{
@@ -20,12 +20,12 @@ public class ModificarPiezaServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         request.setCharacterEncoding("UTF-8");
-        String informacionPieza = request.getParameter("tipo_pieza");
+        String informacionPieza = request.getParameter("tipo_pieza").toLowerCase();
         System.out.println(informacionPieza);
 
         String[] informacionSeparada = dividirInformacion(informacionPieza);
 
-        List<Pieza> listaPiezas = new Select().getPiezasSeparadas();
+        List<Pieza> listaPiezas = new Obtencion().getPiezasSeparadas();
 
         pieza = encontrarPieza(informacionSeparada[0], new BigDecimal(informacionSeparada[1]), listaPiezas);
         System.out.println(informacionSeparada[0]+" "+informacionSeparada[1]);
@@ -44,7 +44,7 @@ public class ModificarPiezaServlet extends HttpServlet{
 
     private String[] dividirInformacion(String informacion){
 
-        return  informacion.split("-");
+        return  informacion.split("Λ");
     }
 
     private Pieza encontrarPieza(String nombre, BigDecimal precio, List<Pieza> listaPiezas){
@@ -69,7 +69,7 @@ public class ModificarPiezaServlet extends HttpServlet{
         String unidades = request.getParameter("textounidades");
         String precio = request.getParameter("textoprecio");
 
-        update.updateInformacionPieza(pieza, new Pieza(nombre, new BigDecimal(precio), Integer.parseInt(unidades)));
+        update.updateInformacionPieza(pieza, new Pieza(nombre.toLowerCase(), new BigDecimal(precio), Integer.parseInt(unidades)));
         System.out.println(pieza.getTipoPieza()+" "+pieza.getCantidad()+" "+pieza.getPrecio());
         response.sendRedirect("/coden_bugs/fabrica/modificarPieza.jsp");
     }
