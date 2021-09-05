@@ -11,15 +11,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mycompany.objetos.ventas.Caja;
+import com.mycompany.objetos.ventas.Compra;
 import com.mycompany.operaciones.Obtencion;
 
-@WebServlet(name="ReporteGananciasServlet", urlPatterns = {"/administracion/reporte-ganancias-servlet"})
-public class ReporteGananciasServlet extends HttpServlet{
+@WebServlet(name="ReporteMuebleMenosServlet", urlPatterns = {"/administracion/reporte-mueble-menos-servlet"})
+public class ReporteMuebleMenosServlet extends HttpServlet{
 
     private String fechaInicial;
     private String fechaFinal;
-    
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         request.setCharacterEncoding("UTF-8");
@@ -29,7 +29,7 @@ public class ReporteGananciasServlet extends HttpServlet{
         request.setAttribute("fechaInicial", fechaInicial);
         request.setAttribute("fechaFinal", fechaFinal);
 
-        request.getRequestDispatcher("/administracion/reporteGanancias.jsp").forward(request, response);
+        request.getRequestDispatcher("/administracion/reporteMuebleVendido.jsp").forward(request, response);
     }
 
     @Override
@@ -39,20 +39,24 @@ public class ReporteGananciasServlet extends HttpServlet{
     }
 
     public String getReporte(HttpServletRequest request) {
-        
-        List<Caja> listaCaja = (ArrayList<Caja>) new Obtencion().getReporteGanancia(fechaInicial,fechaFinal);
-        
+        System.out.println(request.getParameter("nombreMueble"));
+        List<Compra> listaCompra = (ArrayList<Compra>) new Obtencion().getFacturaMuebleV(request.getParameter("nombreMueble"), fechaInicial,fechaFinal);
+
         String resultado = "";
-        resultado+="Registro de la Ganancia, Nombre del Usuario, Identificador del Mueble, Fecha, Ganancia\n";
-        for (Caja caja : listaCaja) {
-            resultado+=caja.getRegistro()+","+caja.getUsuario()+","+caja.getIdentificador()+","+caja.getFechaRegistro()+","+caja.getGanancia().doubleValue()+"\n";
+        if(listaCompra.size() > 0){
+            resultado+="Nombre Del Mueble\n"
+            +request.getParameter("nombreMueble")+"\n\n"
+            +"Registro de la Compra, Nombre del Usuario, Identificador del Mueble, Nit, Fecha, Total\n";
+            for (Compra compra : listaCompra) {
+                resultado+=compra.getRegistroCompra()+","+compra.getNombreUsuario()+","+compra.getIdentificadorMueble()+","+compra.getNit()+","+compra.getFecha()+","+compra.getTotal().doubleValue()+"\n";
+            }
         }
         return resultado;
     }
 
     public void reporte(HttpServletResponse response, String reporte){
         response.setContentType("text/csv;charset=UTF-8");
-        response.setHeader("Content-Disposition", "attatchment; filename=reporteGanancias.csv");
+        response.setHeader("Content-Disposition", "attatchment; filename=reporteMuebleMenosVendido.csv");
 
         try (PrintWriter print = response.getWriter()) {
             print.write(reporte);

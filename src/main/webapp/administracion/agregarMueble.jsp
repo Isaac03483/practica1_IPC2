@@ -25,6 +25,7 @@
 
                     </div>
                     <input class="btn btn-block" type="submit" name="accion" value="Agregar"><br>
+                    <a href="/coden_bugs/administracion/agregarEnsamblePieza.jsp" class="btn btn-block">Agregar ensamble piezas</a><br>
                     <a href="/coden_bugs/administracion/administracion.jsp" class="btn btn-block">Volver</a>
                 </div>
                 

@@ -12,7 +12,7 @@ public class Caja {
     private com.mycompany.enums.TipoRegistro tipo;
     private BigDecimal ganancia;
     private BigDecimal perdida;
-    private int cantidadGanancias;
+    private String nombreMueble;
 
     {
         ganancia = new BigDecimal(0);
@@ -36,14 +36,17 @@ public class Caja {
         this.ganancia=ganancia;
     }
 
-    public Caja(String nombreUsuario, int cantidadGanancias){
+    public Caja(int registro, String nombreUsuario, String nombreMueble, BigDecimal ganancia, Date fecha){
+        this.registroCaja = registro;
         this.nombreUsuario = nombreUsuario;
-        this.cantidadGanancias = cantidadGanancias;
+        this.nombreMueble=nombreMueble;
+        this.ganancia= ganancia;
+        this.fechaRegistro = fecha;
     }
 
     public int getRegistro(){return this.registroCaja;}
 
-    public int getCantidad(){return this.cantidadGanancias;}
+    public String getNombreMueble(){return this.nombreMueble;}
 
     public String getUsuario(){return this.nombreUsuario;}
 

@@ -17,6 +17,7 @@
                     <label><strong>Bienvenido al área de administrativa <%=request.getSession().getAttribute("user")%></strong></label><br><br>
                     <div class="form-group">
                         <a href="/coden_bugs/administracion/agregarMueble.jsp" class="btn btn-block">Agregar nuevo Mueble</a><br>
+                        <a href="/coden_bugs/administracion/agregarEnsamblePieza.jsp" class="btn btn-block">Agregar Ensamble Pieza para muebles Existentes</a><br>
                         <a href="/coden_bugs/administracion/agregarUsuario.jsp" class="btn btn-block">Agregar nuevo Usuario</a><br>
                         <a href="/coden_bugs/administracion/modificarUsuario.jsp" class="btn btn-block">Modificar Usuario existente</a><br>
                         <a href="/coden_bugs/administracion/verReportes.jsp" class="btn btn-block">Reportes</a><br>

@@ -1,3 +1,7 @@
+CREATE USER 'usuario'@'localhost' IDENTIFIED BY 'ConTr@.34';
+
+GRANT ALL PRIVILEGES ON coden_bugs.* TO 'usuario'@'localhost';
+
 CREATE DATABASE coden_bugs;
 
 USE coden_bugs;
@@ -48,8 +52,8 @@ CREATE TABLE cliente (
     nit VARCHAR(45) NOT NULL PRIMARY KEY,
     nombre VARCHAR(45) DEFAULT '',
     direccion VARCHAR(45) DEFAULT '---',
-    departamento VARCHAR(20) DEFAULT '',
-    municipio VARCHAR(20) DEFAULT ''
+    departamento VARCHAR(40) DEFAULT '',
+    municipio VARCHAR(40) DEFAULT ''
 );
 
 CREATE TABLE compra (

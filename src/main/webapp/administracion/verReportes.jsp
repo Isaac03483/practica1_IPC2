@@ -18,6 +18,7 @@
                     <div class="form-group">
                         <a href="/coden_bugs/administracion/reporteVentas.jsp" class="btn btn-block">Reporte de ventas</a><br>
                         <a href="/coden_bugs/administracion/reporteMuebleVendido.jsp" class="btn btn-block">Reporte del mueble más vendido</a><br>
+                        <a href="/coden_bugs/administracion/reporteMuebleMenos.jsp" class="btn btn-block">Reporte del mueble menos vendido</a><br>
                         <a href="/coden_bugs/administracion/reporteDevoluciones.jsp" class="btn btn-block">Reporte de Devoluciones</a><br>
                         <a href="/coden_bugs/administracion/reporteGanancias.jsp" class="btn btn-block">Reporte de Ganancias</a><br>
                         <a href="/coden_bugs/administracion/reporteUsuarioGanancias.jsp" class="btn btn-block">Reporte de usuario que registra más Ganancias</a><br>

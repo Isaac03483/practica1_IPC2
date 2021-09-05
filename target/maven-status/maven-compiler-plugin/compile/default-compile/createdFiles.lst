@@ -22,6 +22,7 @@ com/mycompany/objetos/ventas/Cliente.class
 com/mycompany/servlets/ReporteUsuarioGananciaServlet.class
 com/mycompany/baseDeDatos/Select.class
 com/mycompany/servlets/AgregarVentaServlet.class
+com/mycompany/servlets/ReporteMuebleMenosServlet.class
 com/mycompany/servlets/AgregarDevolucionServlet.class
 com/mycompany/objetos/fabrica/Pieza.class
 com/mycompany/servlets/ConsultaCompraClienteServlet.class
@@ -30,7 +31,6 @@ com/mycompany/objetos/administracion/Usuario.class
 com/mycompany/servlets/EnsamblarMuebleServlet.class
 com/mycompany/baseDeDatos/Update.class
 com/mycompany/objetos/ventas/Compra.class
-com/mycompany/operaciones/ExporteCsv.class
 com/mycompany/operaciones/Obtencion.class
 com/mycompany/servlets/LoginServlet.class
 com/mycompany/enums/TipoUsuario.class
@@ -38,4 +38,5 @@ com/mycompany/operaciones/Generador.class
 com/mycompany/servlets/CargaServlet.class
 com/mycompany/enums/EstadoMueble.class
 com/mycompany/servlets/ModificarUsuarioServlet.class
+com/mycompany/servlets/AgregarEnsamblePiezaServlet.class
 com/mycompany/servlets/ReporteUsuarioVentaServlet.class

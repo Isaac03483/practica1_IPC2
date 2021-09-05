@@ -153,7 +153,7 @@ public class Insert {
                     }
                 }
             }
-
+            
             if(piezas.size() > 0){ //si las piezas son mayores a 0 significa que si se encuentran disponibles por lo que sí se puede verificar que se posean las piezas necesarias para la elaboración del mueble
                 int piezasEncontradas = 0;
                 for(com.mycompany.objetos.fabrica.EnsamblePieza receta: piezasEnsamblar){ //ciclo que recorre el recetario

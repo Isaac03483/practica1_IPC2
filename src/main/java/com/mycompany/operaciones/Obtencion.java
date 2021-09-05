@@ -218,9 +218,7 @@ public class Obtencion {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch(NullPointerException e){
-           System.err.println("Error nulo en fechas");
-        }
+        } 
 
         return compras;
     }
@@ -238,10 +236,7 @@ public class Obtencion {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch(NullPointerException e){
-           System.err.println("Error nulo en fechas");
-        }
-
+        } 
         return compras;
     }
 
@@ -274,10 +269,7 @@ public class Obtencion {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch(NullPointerException e){
-           System.err.println("Error nulo en fechas");
         }
-
         return devolucion;
     }
 
@@ -310,14 +302,35 @@ public class Obtencion {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+        } catch(NullPointerException e){
+            System.err.println("error reporte 1");
         }
 
         return muebleMasVendido;
     }
 
-    public List<Compra> getFacturaMuebleMasV(String nombreMueble, String fechaInicial, String fechaFinal){
+    public MuebleEnsamblado getMuebleMenosVendido(){
+        MuebleEnsamblado muebleMasVendido = null;
+
+        ResultSet resultadoMueble = select.selectMuebleMenosVendido();
+
+        try {
+            if(resultadoMueble.next()){
+                muebleMasVendido = new MuebleEnsamblado(resultadoMueble.getString("nombre_mueble"), resultadoMueble.getInt("cantidad"));
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (NullPointerException e){
+
+        }
+
+        return muebleMasVendido;
+    }
+
+    public List<Compra> getFacturaMuebleV(String nombreMueble, String fechaInicial, String fechaFinal){
         List<Compra> compras = new ArrayList<>();
-        ResultSet resultadoCompras = select.selectFacturaMuebleMasV(nombreMueble, fechaInicial,fechaFinal);
+        ResultSet resultadoCompras = select.selectFacturaMuebleV(nombreMueble, fechaInicial,fechaFinal);
 
         try {
 
@@ -328,8 +341,6 @@ public class Obtencion {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch(NullPointerException e){
-           System.err.println("Error nulo en fechas");
         }
 
         return compras;
@@ -348,8 +359,6 @@ public class Obtencion {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch(NullPointerException e){
-           System.err.println("Error nulo en fechas");
         }
 
         return compras;
@@ -368,9 +377,7 @@ public class Obtencion {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch(NullPointerException e){
-           System.err.println("Error nulo en fechas");
-        }
+        } 
 
         return devolucion;
     }
@@ -388,9 +395,7 @@ public class Obtencion {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch(NullPointerException e){
-           System.err.println("Error nulo en fechas");
-        }
+        } 
 
         return ganancia;
     }
@@ -402,16 +407,14 @@ public class Obtencion {
         try {
 
             while(resultadoGanancia.next()){
-                ganancia.add(new Caja(resultadoGanancia.getString("nombre_usuario"), resultadoGanancia.getInt("Cantidad de Ganancias")));
+                ganancia.add(new Caja(resultadoGanancia.getInt("caja.registro_caja"), resultadoGanancia.getString("caja.nombre_usuario"), resultadoGanancia.getString("mueble_ensamblado.nombre_mueble"), resultadoGanancia.getBigDecimal("caja.ganancia"), resultadoGanancia.getDate("fecha_registro")));
             }
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch(NullPointerException e){
-           System.err.println("Error nulo en fechas");
-        }
-
+        } 
+        
         return ganancia;
     }
 
@@ -422,14 +425,12 @@ public class Obtencion {
         try {
 
             while(resultadoCompras.next()){
-                compras.add(new Compra(resultadoCompras.getString("nombre_usuario"), resultadoCompras.getInt("Cantidad de Ventas")));
+                compras.add(new Compra(resultadoCompras.getInt("compra.registro_compra"), resultadoCompras.getString("compra.nombre_usuario"), resultadoCompras.getString("mueble_ensamblado.nombre_mueble"), resultadoCompras.getBigDecimal("compra.total"), resultadoCompras.getDate("fecha_compra")));
             }
 
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch(NullPointerException e){
-           System.err.println("Error nulo en fechas");
         }
 
         return compras;

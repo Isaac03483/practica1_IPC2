@@ -28,7 +28,14 @@
                     <center><strong>Ensamblar Mueble</strong></center>
                     <div class="form-group">
                         <label>Nombre del Mueble</label>
-                        <input type="text" name="nombreMueble" class="form-control" placeholder="Ingrese el nombre del Mueble" required>
+                        <select name="nombreMueble" class="custom-select d-block w-100" id="selectpieza" required>
+
+                            <%
+                                for(int i = 0; i < listaMuebles.size(); i++){
+                                    out.print("<option value=\""+listaMuebles.get(i).getNombreMueble()+"\">"+listaMuebles.get(i).getNombreMueble()+"</option>");
+                                }
+                            %>
+                        </select><br>
                     </div>
                     <div class="form-group">
                         <label>Usuario que ensambla:</label>
@@ -41,24 +48,6 @@
             </form>
 
             <br>
-        </div>
-
-        <div class ="container col-lg-3">
-            <center><label><strong>Muebles disponibles para ensamble</strong></label></center><br>
-            <table style="width:50%">
-                <tr>
-                    <th>Nombre del mueble</th>
-                    <th>precio</th>
-                </tr>
-                <%
-                    for(Mueble mueble: listaMuebles){
-                        out.print("<tr>");
-                        out.print("<td>"+mueble.getNombreMueble()+"</td>");
-                        out.print("<td>"+mueble.getPrecio()+"</td>");
-                        out.print("</tr>");
-                    }
-                %>
-            </table>  
         </div>
               
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

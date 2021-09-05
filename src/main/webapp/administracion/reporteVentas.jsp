@@ -7,7 +7,7 @@
     String fechaInicial = (String) request.getAttribute("fechaInicial");
     String fechaFinal = (String) request.getAttribute("fechaFinal");
     List<Compra> listaVentas = (ArrayList<Compra>) new Obtencion().getReporteVentas(fechaInicial, fechaFinal);
-
+    request.setAttribute("listaVentas", listaVentas);
 %>
 
 <html>
@@ -28,16 +28,19 @@
                     <center><label><strong>Reporte de Ventas por Fechas</strong></label></center><br>
                     <div class="form-group">
                         <label>Fecha inicial:</label>
-                        <input type="date" name="fechainicial" required>
+                        <input type="date" class="form-control" name="fechainicial">
                     </div>
                     <div class="form-group">
                         <label>Fecha final:</label>
-                        <input type="date" name="fechafinal" required>
+                        <input type="date" class="form-control" name="fechafinal">
                     </div>
                     <input type="submit" class="btn btn-block" value="Buscar"><br>
                     <a href="/coden_bugs/administracion/verReportes.jsp" class="btn btn-block">Volver</a>
                 </div>
 
+            </form>
+            <form action="reporte-ventas-servlet" method="post">
+                <input type="submit" class="btn btn-block" value="Exportar (Formato CSV)">
             </form>
         </div>
 

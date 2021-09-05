@@ -1,13 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.mycompany.objetos.ventas.Devolucion"%>
+<%@page import="com.mycompany.objetos.ventas.MuebleEnsamblado"%>
+<%@page import="com.mycompany.objetos.ventas.Compra"%>
 <%@page import="com.mycompany.operaciones.Obtencion"%>
 <%
-    String nit = (String) request.getAttribute("nit");
     String fechaInicial = (String) request.getAttribute("fechaInicial");
     String fechaFinal = (String) request.getAttribute("fechaFinal");
-    List<Devolucion> listaDevoluciones = (ArrayList<Devolucion>) new Obtencion().getDevoluciones(nit, fechaInicial, fechaFinal);
+    List<Compra> listaCompra = (ArrayList<Compra>) new Obtencion().getReporteUsuarioVentas(fechaInicial, fechaFinal);
 
 %>
 
@@ -23,59 +23,63 @@
     <body>
 
         <div class="container col-lg-3">
-            <form action="consulta-devolucion-cliente-servlet">
+
+            <center><label><strong>Reporte Usuario que registra más ventas</strong></label></center><br>
+            <form action="reporte-usuario-ventas-servlet" method="post">
+                <div class="form-group">
+                    <label>Nombre del Usuario:</label>
+                    <input type="text" name="nombre" class="form-control" value="<%if(listaCompra.size() > 0){%><%=listaCompra.get(0).getNombreUsuario()%><%}%>" readonly>
+                </div>
+            
+                <input type="submit" class="btn btn-block" value="Exportar (Formato CSV)">
+            </form>
+            <form action="reporte-usuario-ventas-servlet">
 
                 <div class="form-group">
-                    <div class="form-group">
-                        <center><label><strong>Consulta de Devoluciones de clientes por fechas</strong></label></center><br>
-
-                        <label>Cliente:</label>
-                        
-                    </div>
+                    
                     <div class="form-group">
                         <label>Fecha inicial:</label>
-                        <input type="date" name="fechainicial" required>
+                        <input type="date" name="fechainicial" class="form-control">
                     </div>
                     <div class="form-group">
                         <label>Fecha final:</label>
-                        <input type="date" name="fechafinal" required>
+                        <input type="date" name="fechafinal" class="form-control">
                     </div>
                     <input type="submit" class="btn btn-block" value="Buscar"><br>
-                    <a href="/coden_bugs/ventas/ventas.jsp" class="btn btn-block">Volver</a>
+                    <a href="/coden_bugs/administracion/verReportes.jsp" class="btn btn-block">Volver</a>
                 </div>
 
             </form>
+            
         </div>
 
         <div class="container lateral">
 
             <table style="width:100%">
 
-                    <tr>
-                        <th>Registro de Devolucion</th>
-                        <th>Identificador del Mueble</th>
-                        <th>nit</th>
-                        <th>Fecha de devolución</th>
-                        <th>Perdida</th>
-                    </tr>
-
-                    <%
+                <tr>
+                    <th>Registro de la compra</th>
+                    <th>Fecha de la Venta</th>
+                    <th>Nombre del mueble</th>
+                    <th>Total</th>
                     
-                        if(listaDevoluciones != null){
-                            for(Devolucion devolucion: listaDevoluciones){
-                                    
-                                out.print("<tr>");
-                                out.print("<td>"+devolucion.getRegistroDevolucion()+"</td>");
-                                out.print("<td>"+devolucion.getIdentificadorMueble()+"</td>");
-                                out.print("<td>"+devolucion.getNit()+"</td>");
-                                out.print("<td>"+devolucion.getFecha()+"</td>");
-                                out.print("<td>"+devolucion.getPerdida()+"</td>");
-                                out.print("</tr>");
-                            }
+                </tr>
+                <%
+                
+                    if(listaCompra != null){
+                        for(Compra compra: listaCompra){
+                                
+                            out.print("<tr>");
+                            out.print("<td>"+compra.getRegistroCompra()+"</td>");
+                            out.print("<td>"+compra.getFecha()+"</td>");
+                            out.print("<td>"+compra.getNombreMueble()+"</td>");
+                            out.print("<td>"+compra.getTotal()+"</td>");
+                            out.print("</tr>");
                         }
-                    
-                    %>
-                </table>
+                    }
+                
+                %>       
+            </table>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>

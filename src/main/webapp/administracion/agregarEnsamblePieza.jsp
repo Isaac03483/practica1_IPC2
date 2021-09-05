@@ -1,4 +1,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.mycompany.operaciones.Obtencion"%>
+<%@page import="com.mycompany.objetos.fabrica.Mueble"%>
+<%@page import="com.mycompany.objetos.fabrica.Pieza"%>
+
+<%
+    List<Mueble> listaMuebles = (ArrayList<Mueble>)new Obtencion().getMuebles();
+    List<Pieza> listaPiezas = (ArrayList<Pieza>) new Obtencion().getPiezasSeparadas();
+
+%>
 <html>
 
     <head>
@@ -11,18 +22,41 @@
 
         <div class="container col-lg-3">
 
-            <form method="post" action="agregar-mueble-servlet">
+            <form method="post" action="agregar-ensamble-pieza-servlet">
                 <div class="form-group">
                     <center><label><strong>Ingreso de piezas necesarias para el ensamble del mueble.</strong><label></center>
                 
                     <div class="form-group">
                         <label>Nombre del Mueble:</label>
-                        <input class="form-control" type="text" name="txtnombre" placeholder="Ingrese Nombre" required>
+                        <select name="nombreMueble" class="custom-select d-block w-100" id="selectpieza" required>
+
+                            <%
+                                for(int i = 0; i < listaMuebles.size(); i++){
+                                    
+                                    out.print("<option value=\""+listaMuebles.get(i).getNombreMueble()+"\">"+listaMuebles.get(i).getNombreMueble()+"</option>");
+
+                                    
+                                }
+                            %>
+                        </select><br>
                     </div>
                     <div class="form-group">
-                        <label>Precio:</label>
-                        <input type="number" name="txtprecio" class="form-control" min="1" step="any" required>
+                        <label>Nombre de la Pieza:</label>
+                        <select name="tipo_pieza" class="custom-select d-block w-100" id="selectpieza" required>
 
+                            <%
+                                for(int i = 0; i < listaPiezas.size(); i++){
+                                    
+                                    out.print("<option value=\""+listaPiezas.get(i).getTipoPieza()+"\">"+listaPiezas.get(i).getTipoPieza()+"</option>");
+                                    
+                                }
+                            %>
+                        </select><br>
+
+                    </div>
+                    <div class="form-group">
+                        <label>Cantidad:</label>
+                        <input type="number" class="form-control" name="cantidad" min="1" required>
                     </div>
                     <input class="btn btn-block" type="submit" name="accion" value="Agregar"><br>
                     <a href="/coden_bugs/administracion/administracion.jsp" class="btn btn-block">Volver</a>

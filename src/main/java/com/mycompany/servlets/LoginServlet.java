@@ -23,7 +23,7 @@ public class LoginServlet extends HttpServlet{
         String pass=request.getParameter("txtcontra");
         Select select = new Select();
         System.out.println("Entrando...");
-
+        System.out.println(request.getContextPath());
         if(!user.equals("") && user != null){
             if(!pass.equals("") && pass != null){
                 try{

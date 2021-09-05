@@ -7,14 +7,12 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
-
 import com.mycompany.baseDeDatos.Conexion;
 import com.mycompany.baseDeDatos.Update;
 import com.mycompany.enums.EstadoMueble;

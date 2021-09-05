@@ -5,11 +5,17 @@
 <%@page import="com.mycompany.objetos.ventas.Compra"%>
 <%@page import="com.mycompany.operaciones.Obtencion"%>
 <%
-    String nombreMueble = new Obtencion().getMuebleMasVendido().getMuebleEnsamblar();
+    String nombreMueble="";
+    try{
+        nombreMueble = new Obtencion().getMuebleMasVendido().getMuebleEnsamblar();
+    }catch(NullPointerException e){
+            System.err.println("error reporte 1");
+    }
+    
     String fechaInicial = (String) request.getAttribute("fechaInicial");
     String fechaFinal = (String) request.getAttribute("fechaFinal");
-    List<Compra> listaCompra = (ArrayList<Compra>) new Obtencion().getFacturaMuebleMasV(nombreMueble,fechaInicial, fechaFinal);
-
+    List<Compra> listaCompra = (ArrayList<Compra>) new Obtencion().getFacturaMuebleV(nombreMueble,fechaInicial, fechaFinal);
+    request.setAttribute("nombreMueble", nombreMueble);
 %>
 
 <html>
@@ -24,28 +30,34 @@
     <body>
 
         <div class="container col-lg-3">
-            <form action="reporte-mueble-vendido-servlet">
+            <center><label><strong>Reporte del Mueble más Vendido</strong></label></center><br>
+                
+                <form action="reporte-mueble-menos-servlet" method="post">
+                    <div class="form-group">
+                        <label>Nombre del Mueble más vendido:</label>
+                        <input type="text" name="nombreMueble" readonly class="form-control" value="<%=nombreMueble%>">
+                    </div>
+                
+                    <input type="submit" class="btn btn-block" value="Exportar (Formato CSV)">
+                </form>
+                <form action="reporte-mueble-menos-servlet">
 
-                <div class="form-group">
+                    <div class="form-group">
+                        
+                        <div class="form-group">
+                            <label>Fecha inicial:</label>
+                            <input type="date" class="form-control" name="fechainicial">
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha final:</label>
+                            <input type="date" class="form-control" name="fechafinal">
+                        </div>
+                        
+                        <input type="submit" class="btn btn-block" value="Buscar"><br>
+                        <a href="/coden_bugs/administracion/verReportes.jsp" class="btn btn-block">Volver</a>
+                    </div>
                     
-                    <center><label><strong>Reporte del Mueble Más Vendido</strong></label></center><br>
-                    <div class="form-group">
-                    <label>Nombre del Mueble más vendido:</label>
-                    <input type="text" readonly class="form-control" value="<%=nombreMueble%>">
-                    </div>
-                    <div class="form-group">
-                        <label>Fecha inicial:</label>
-                        <input type="date" name="fechainicial" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Fecha final:</label>
-                        <input type="date" name="fechafinal" required>
-                    </div>
-                    <input type="submit" class="btn btn-block" value="Buscar"><br>
-                    <a href="/coden_bugs/administracion/verReportes.jsp" class="btn btn-block">Volver</a>
-                </div>
-
-            </form>
+                </form>
         </div>
 
         <div class="container lateral">

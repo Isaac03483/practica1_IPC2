@@ -22,13 +22,13 @@ public class AgregarMuebleServlet extends HttpServlet{
             String nombreMueble = request.getParameter("txtnombre");
             BigDecimal precio = new BigDecimal(request.getParameter("txtprecio"));
             Conexion.insertar(new Mueble(nombreMueble.toLowerCase(), precio));
-            response.sendRedirect("/coden_bugs/fabrica/agregarMueble.jsp");
+            
             System.out.println("Mueble agregado");
         } catch(Exception e){
             System.out.println("Error al querer ingresar un nuevo mueble, por favor verifique");
-            response.sendRedirect("/coden_bugs/fabrica/agregarMueble.jsp");
+            
         }
 
-
+        response.sendRedirect("/coden_bugs/administracion/agregarMueble.jsp");
     }
 }

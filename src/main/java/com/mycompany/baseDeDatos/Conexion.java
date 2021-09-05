@@ -16,6 +16,7 @@ import com.mycompany.objetos.ventas.MuebleEnsamblado;
 
 public class Conexion {
 
+    
     protected static Connection conexion=null;
 
     public Conexion(){
@@ -56,6 +57,11 @@ public class Conexion {
 
     }
 
+    /**
+     * s
+     * @param objeto
+     * @throws SQLException
+     */
     public static void insertar(Object objeto) throws SQLException{
 
         Insert insert = new Insert();

@@ -42,11 +42,11 @@
                     </div>
                     <div class="form-group">
                         <label>Fecha inicial:</label>
-                        <input type="date" name="fechainicial" required>
+                        <input type="date" class="form-control" name="fechainicial" required>
                     </div>
                     <div class="form-group">
                         <label>Fecha final:</label>
-                        <input type="date" name="fechafinal" required>
+                        <input type="date" class="form-control" name="fechafinal" required>
                     </div>
                     <input type="submit" class="btn btn-block" value="Buscar"><br>
                     <a href="/coden_bugs/ventas/ventas.jsp" class="btn btn-block">Volver</a>

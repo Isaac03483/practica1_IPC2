@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.mycompany.baseDeDatos.Conexion;
-import com.mycompany.baseDeDatos.Select;
 import com.mycompany.baseDeDatos.Update;
 import com.mycompany.enums.EstadoMueble;
 import com.mycompany.enums.TipoRegistro;
@@ -116,7 +115,7 @@ public class AgregarVentaServlet extends HttpServlet{
                 double perdida = mueble.getCosto().doubleValue()-muebleBuscado.getPrecio().doubleValue();
                 Conexion.insertar(new Caja(mueble.getIdentificadorUnico(), nombreUsuario, new Date(), TipoRegistro.PERDIDA, new BigDecimal(0), new BigDecimal(perdida)));
             }
-            Conexion.insertar(new Compra(nombreUsuario, mueble.getIdentificadorUnico(), nit, new Date(), mueble.getCosto()));
+            Conexion.insertar(new Compra(nombreUsuario, mueble.getIdentificadorUnico(), nit, new Date(), muebleBuscado.getPrecio()));
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

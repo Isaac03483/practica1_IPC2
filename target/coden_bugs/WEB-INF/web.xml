@@ -164,4 +164,44 @@
     <servlet-name>ReporteMuebleVendidoServlet</servlet-name>
     <url-pattern>/administracion/reporte-mueble-vendido-servlet</url-pattern>
   </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AgregarEnsamblePiezaServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.AgregarEnsamblePiezaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AgregarEnsamblePiezaServlet</servlet-name>
+    <url-pattern>/administracion/agregar-ensamble-pieza-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReporteUsuarioVentaServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ReporteUsuarioVentaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReporteUsuarioVentaServlet</servlet-name>
+    <url-pattern>/administracion/reporte-usuario-ventas-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReporteUsuarioGananciaServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ReporteUsuarioGananciaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReporteUsuarioGananciaServlet</servlet-name>
+    <url-pattern>/administracion/reporte-usuario-ganancias-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReporteMuebleMenosServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ReporteMuebleMenosServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReporteMuebleMenosServlet</servlet-name>
+    <url-pattern>/administracion/reporte-mueble-menos-servlet</url-pattern>
+  </servlet-mapping>
 </web-app>

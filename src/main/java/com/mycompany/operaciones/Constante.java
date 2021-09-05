@@ -6,8 +6,8 @@ public class Constante {
      * Clase que contiene todas las constantes.
      */
     
-    public static final String USR = "root";
-    public static final String PASSWORD = "L@luz1414";
+    public static final String USR = "usuario";
+    public static final String PASSWORD = "ConTr@.34";
     public static final String URL_MYSQL = "jdbc:mysql://localhost:3306/coden_bugs";
     public static final String ASCENDENTE = "ASC";
     public static final String DESCENDENTE = "DESC";
@@ -61,13 +61,14 @@ public class Constante {
     public static final String SELECT_REPORTE_DEVOLUCION_GENERAL = "SELECT * FROM devolucion";
     public static final String SELECT_REPORTE_GANANCIAS = "SELECT nombre_usuario, registro_caja, fecha_registro, ganancia , identificador_mueble FROM caja WHERE tipo_registro = 'ganancia' AND fecha_registro BETWEEN ? AND ?";
     public static final String SELECT_REPORTE_GANANCIAS_GENERAL = "SELECT nombre_usuario, registro_caja, fecha_registro, ganancia , identificador_mueble FROM caja WHERE tipo_registro = 'ganancia'";
-    public static final String SELECT_REPORTE_USUARIO_VENTAS = "SELECT nombre_usuario, COUNT(nombre_usuario) AS 'Cantidad de Ventas' FROM compra WHERE fecha_compra BETWEEN ? AND ? GROUP BY nombre_usuario";
-    public static final String SELECT_REPORTE_USUARIO_VENTAS_GENERAL = "SELECT nombre_usuario, COUNT(nombre_usuario) AS 'Cantidad de Ganancias' FROM compra GROUP BY nombre_usuario";
-    public static final String SELECT_REPORTE_USUARIO_GANANCIAS = "SELECT nombre_usuario, COUNT(nombre_usuario) AS 'Cantidad de Ganancias' FROM caja WHERE tipo_registro ='ganancia' AND fecha_registro BETWEEN ? AND ? GROUP BY nombre_usuario";
-    public static final String SELECT_REPORTE_USUARIO_GANANCIAS_GENERAL = "SELECT nombre_usuario, COUNT(nombre_usuario) AS 'Cantidad de Ganancias' FROM caja WHERE tipo_registro ='ganancia' GROUP BY nombre_usuario";
-    public static final String SELECT_MUEBLE_MAS_VENDIDO = "SELECT nombre_mueble, COUNT(identificador_unico) AS cantidad from mueble_ensamblado WHERE estado='vendido' GROUP BY nombre_mueble";
-    public static final String SELECT_FACTURA_MUEBLE_MAS_VENDIDO= "SELECT compra.registro_compra, compra.nombre_usuario, compra.identificador_mueble, compra.nit, compra.fecha_compra, compra.total FROM compra INNER JOIN mueble_ensamblado WHERE compra.identificador_mueble = mueble_ensamblado.identificador_unico AND mueble_ensamblado.estado='vendido' AND mueble_ensamblado.nombre_mueble = ? AND compra.fecha_compra BETWEEN ? AND ?";
-    public static final String SELECT_FACTURA_MUEBLE_MAS_VENDIDO_GENERAL= "SELECT compra.registro_compra, compra.nombre_usuario, compra.identificador_mueble, compra.nit, compra.fecha_compra, compra.total FROM compra INNER JOIN mueble_ensamblado WHERE compra.identificador_mueble = mueble_ensamblado.identificador_unico AND mueble_ensamblado.estado='vendido' AND mueble_ensamblado.nombre_mueble = ?";
+    public static final String SELECT_REPORTE_USUARIO_VENTAS_GENERAL  = "SELECT compra.registro_compra, compra.nombre_usuario, mueble_ensamblado.nombre_mueble, compra.total, compra.fecha_compra FROM compra INNER JOIN mueble_ensamblado WHERE compra.identificador_mueble = mueble_ensamblado.identificador_unico  AND compra.nombre_usuario = (SELECT nombre_usuario FROM compra GROUP BY nombre_usuario ORDER BY COUNT(nombre_usuario) DESC LIMIT 1)";
+    public static final String SELECT_REPORTE_USUARIO_VENTAS = "SELECT compra.registro_compra, compra.nombre_usuario, mueble_ensamblado.nombre_mueble, compra.total, compra.fecha_compra FROM compra INNER JOIN mueble_ensamblado WHERE compra.identificador_mueble = mueble_ensamblado.identificador_unico AND compra.fecha_compra BETWEEN ? AND ? AND compra.nombre_usuario = (SELECT nombre_usuario FROM compra GROUP BY nombre_usuario ORDER BY COUNT(nombre_usuario) DESC LIMIT 1)";
+    public static final String SELECT_REPORTE_USUARIO_GANANCIAS = "SELECT caja.registro_caja, caja.nombre_usuario, mueble_ensamblado.nombre_mueble, caja.ganancia, caja.fecha_registro FROM caja INNER JOIN mueble_ensamblado WHERE caja.identificador_mueble = mueble_ensamblado.identificador_unico AND caja.fecha_registro BETWEEN ? AND ? AND caja.tipo_registro = 'ganancia' AND caja.nombre_usuario = (SELECT nombre_usuario FROM caja GROUP BY nombre_usuario ORDER BY COUNT(nombre_usuario) DESC LIMIT 1)";
+    public static final String SELECT_REPORTE_USUARIO_GANANCIAS_GENERAL = "SELECT caja.registro_caja, caja.nombre_usuario, mueble_ensamblado.nombre_mueble, caja.ganancia, caja.fecha_registro FROM caja INNER JOIN mueble_ensamblado WHERE caja.identificador_mueble = mueble_ensamblado.identificador_unico AND caja.tipo_registro = 'ganancia' AND caja.nombre_usuario = (SELECT nombre_usuario FROM caja GROUP BY nombre_usuario ORDER BY COUNT(nombre_usuario) DESC LIMIT 1)";
+    public static final String SELECT_MUEBLE_MAS_VENDIDO = "SELECT nombre_mueble, COUNT(nombre_mueble) AS cantidad from mueble_ensamblado WHERE estado='vendido' GROUP BY nombre_mueble ORDER BY cantidad DESC LIMIT 1";
+    public static final String SELECT_MUEBLE_MENOS_VENDIDO = "SELECT nombre_mueble, COUNT(nombre_mueble) AS cantidad from mueble_ensamblado WHERE estado='vendido' GROUP BY nombre_mueble ORDER BY cantidad ASC LIMIT 1";
+    public static final String SELECT_FACTURA_MUEBLE_VENDIDO= "SELECT compra.registro_compra, compra.nombre_usuario, compra.identificador_mueble, compra.nit, compra.fecha_compra, compra.total FROM compra INNER JOIN mueble_ensamblado WHERE compra.identificador_mueble = mueble_ensamblado.identificador_unico AND mueble_ensamblado.estado='vendido' AND mueble_ensamblado.nombre_mueble = ? AND compra.fecha_compra BETWEEN ? AND ?";
+    public static final String SELECT_FACTURA_MUEBLE_VENDIDO_GENERAL= "SELECT compra.registro_compra, compra.nombre_usuario, compra.identificador_mueble, compra.nit, compra.fecha_compra, compra.total FROM compra INNER JOIN mueble_ensamblado WHERE compra.identificador_mueble = mueble_ensamblado.identificador_unico AND mueble_ensamblado.estado='vendido' AND mueble_ensamblado.nombre_mueble = ?";
     public static final String SELECT_CLIENTE = "SELECT * FROM cliente WHERE nit =?";
     public static final String SELECT_USUARIO = "SELECT password, tipo FROM usuario WHERE nombre_usuario =?";
     public static final String SELECT_USUARIOS_ACTIVOS = "SELECT * FROM usuario WHERE tipo != 'cancelado'";

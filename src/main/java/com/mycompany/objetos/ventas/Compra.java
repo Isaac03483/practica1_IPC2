@@ -11,12 +11,7 @@ public class Compra {
     private String nit;
     private Date fechaCompra;
     private BigDecimal total;
-    private int cantidadVentas;
-
-    public Compra(String nombreUsuario, int cantidadVentas){
-        this.nombreUsuario=nombreUsuario;
-        this.cantidadVentas=cantidadVentas;
-    }
+    private String nombreMueble;
 
     public Compra(String nombreUsuario, String identificadorMueble, String nit, Date fechaCompra, BigDecimal total){
         this.nombreUsuario=nombreUsuario;
@@ -36,7 +31,15 @@ public class Compra {
         this.total=total;
     }
 
-    public int getCantidad(){return this.cantidadVentas;}
+    public Compra(int registroCompra, String nombreUsuario, String nombreMueble, BigDecimal total, Date fecha){
+        this.registroCompra = registroCompra;
+        this.nombreUsuario = nombreUsuario;
+        this.nombreMueble = nombreMueble;
+        this.total=total;
+        this.fechaCompra = fecha;
+    }
+
+    public String getNombreMueble(){return this.nombreMueble;}
 
     public int getRegistroCompra(){return this.registroCompra;}
 
