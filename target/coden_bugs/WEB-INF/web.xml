@@ -1,0 +1,207 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  
+  <servlet>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.LoginServlet</servlet-class>
+  </servlet>
+    
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/login-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CargaServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.CargaServlet</servlet-class>
+  </servlet>
+    
+  <servlet-mapping>
+    <servlet-name>CargaServlet</servlet-name>
+    <url-pattern>/carga-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AgregarMuebleServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.AgregarMuebleServlet</servlet-class>
+  </servlet>
+    
+  <servlet-mapping>
+    <servlet-name>AgregarMuebleServlet</servlet-name>
+    <url-pattern>/administracion/agregar-mueble-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>CerrarSesionServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.CerrarSesionServlet</servlet-class>
+  </servlet>
+    
+  <servlet-mapping>
+    <servlet-name>CerrarSesionServlet</servlet-name>
+    <url-pattern>/cerrar-sesion-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AgregarPiezaServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.AgregarPiezaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AgregarPiezaServlet</servlet-name>
+    <url-pattern>/fabrica/agregar-pieza-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ModificarPiezaServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ModificarPiezaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ModificarPiezaServlet</servlet-name>
+    <url-pattern>/fabrica/modificar-pieza-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AgregarUsuarioServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.AgregarUsuarioServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AgregarUsuarioServlet</servlet-name>
+    <url-pattern>/administracion/agregar-usuario-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AgregarVentaServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.AgregarVentaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AgregarVentaServlet</servlet-name>
+    <url-pattern>/ventas/agregar-venta-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AgregarDevolucionServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.AgregarDevolucionServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AgregarDevolucionServlet</servlet-name>
+    <url-pattern>/ventas/agregar-devolucion-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ConsultaCompraClienteServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ConsultaCompraClienteServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ConsultaCompraClienteServlet</servlet-name>
+    <url-pattern>/ventas/consulta-compra-cliente-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ConsultaDevolucionClienteServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ConsultaDevolucionClienteServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ConsultaDevolucionClienteServlet</servlet-name>
+    <url-pattern>/ventas/consulta-devolucion-cliente-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ModificarUsuarioServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ModificarUsuarioServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ModificarUsuarioServlet</servlet-name>
+    <url-pattern>/administracion/modificar-usuario-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReporteVentasServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ReporteVentasServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReporteVentasServlet</servlet-name>
+    <url-pattern>/administracion/reporte-ventas-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReporteGananciasServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ReporteGananciasServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReporteGananciasServlet</servlet-name>
+    <url-pattern>/administracion/reporte-ganancias-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReporteDevolucionesServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ReporteDevolucionesServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReporteDevolucionesServlet</servlet-name>
+    <url-pattern>/administracion/reporte-devoluciones-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReporteMuebleVendidoServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ReporteMuebleVendidoServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReporteMuebleVendidoServlet</servlet-name>
+    <url-pattern>/administracion/reporte-mueble-vendido-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>AgregarEnsamblePiezaServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.AgregarEnsamblePiezaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>AgregarEnsamblePiezaServlet</servlet-name>
+    <url-pattern>/administracion/agregar-ensamble-pieza-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReporteUsuarioVentaServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ReporteUsuarioVentaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReporteUsuarioVentaServlet</servlet-name>
+    <url-pattern>/administracion/reporte-usuario-ventas-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReporteUsuarioGananciaServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ReporteUsuarioGananciaServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReporteUsuarioGananciaServlet</servlet-name>
+    <url-pattern>/administracion/reporte-usuario-ganancias-servlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>ReporteMuebleMenosServlet</servlet-name>
+    <servlet-class>com.mycompany.servlets.ReporteMuebleMenosServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReporteMuebleMenosServlet</servlet-name>
+    <url-pattern>/administracion/reporte-mueble-menos-servlet</url-pattern>
+  </servlet-mapping>
+</web-app>
