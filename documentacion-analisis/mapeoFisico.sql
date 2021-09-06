@@ -35,6 +35,8 @@ CREATE TABLE usuario (
     tipo ENUM('Fábrica','punto de venta','financiero', 'cancelado') NOT NULL
 );
 
+INSERT INTO usuario (nombre_usuario, password, tipo) VALUES ('jgranados','miPassword','financiero');
+
 CREATE TABLE mueble_ensamblado (
     identificador_unico VARCHAR(45) NOT NULL PRIMARY KEY,
     nombre_mueble VARCHAR(45) NOT NULL,
