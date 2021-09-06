@@ -19,6 +19,7 @@ public class CargaServlet extends HttpServlet{
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+
         request.setCharacterEncoding("UTF-8");
         Part path = request.getPart("myfile");
         CargaDatos carga = new CargaDatos(path.getInputStream());
