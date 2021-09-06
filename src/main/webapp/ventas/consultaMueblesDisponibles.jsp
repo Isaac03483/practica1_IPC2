@@ -22,7 +22,7 @@
         <div class="container lateral">
             <a href="/coden_bugs/ventas/ventas.jsp" class="btn btn-block">Volver</a><br><br>
             <center><label><strong>Muebles Disponibles</strong></label></center>
-            <table style="width:100%">
+            <table class="table table-bordered"style="width:100%">
                 <tr>
                     <th>Identificador Unico</th>
                     <th>Nombre del mueble</th>

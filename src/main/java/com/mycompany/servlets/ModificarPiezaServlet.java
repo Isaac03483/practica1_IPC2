@@ -44,7 +44,7 @@ public class ModificarPiezaServlet extends HttpServlet{
 
     private String[] dividirInformacion(String informacion){
 
-        return  informacion.split("Λ");
+        return  informacion.split("#");
     }
 
     private Pieza encontrarPieza(String nombre, BigDecimal precio, List<Pieza> listaPiezas){

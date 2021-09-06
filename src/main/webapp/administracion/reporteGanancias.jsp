@@ -46,7 +46,7 @@
 
         <div class="container lateral">
 
-            <table style="width:100%">
+            <table class="table table-bordered"style="width:100%">
 
                 <tr>
                     <th>Registro</th>

@@ -27,7 +27,7 @@
                 <a href="/coden_bugs/fabrica/fabrica.jsp" class="btn btn-block">Volver</a><br>
                 <center><label>Lista de Muebles creados Orden: Ascendente</label></center><br>
                 
-                <table style="width:100%">
+                <table class="table table-bordered" style="width:100%">
                     <tr>
                         <th>Identificador Unico</th>
                         <th>Nombre del mueble</th>

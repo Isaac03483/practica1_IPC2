@@ -24,7 +24,7 @@
         <div class="container lateral">
             <a href="/coden_bugs/ventas/ventas.jsp" class="btn btn-block">Volver</a><br>
             <center><label><strong>Ventas del día <%= new SimpleDateFormat("yyyy-MM-dd").format(new Date())%></strong></label></center><br>
-            <table style="width:100%">
+            <table class="table table-bordered"style="width:100%">
 
                     <tr>
                         <th>Registro de compra</th>

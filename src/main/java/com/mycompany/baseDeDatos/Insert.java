@@ -182,7 +182,7 @@ public class Insert {
                                 piezasEncontradas++; //ya que el valor de las piezas faltantes es 0 significa que se han encontrado todas y se puede aumentar el contador
                                 costoMueble+=piezas.get(i).getPrecio().doubleValue()*piezasUtilizadas; //obtenemos el costo del mueble agregandole el precio de la pieza multiplicada por el número de piezas utilizadas
                                 break;
-                            } else if(piezasFaltantes > piezasUtilizadas && piezasUtilizadas > 0){ //si las piezas faltantes es mayor al número de piezas encontradas pero se han utilizado algunas piezas entonces aún así se debe agregar el costo de dicha pieza utilizada
+                            } else if(piezasFaltantes >= piezasUtilizadas && piezasUtilizadas > 0){ //si las piezas faltantes es mayor al número de piezas encontradas pero se han utilizado algunas piezas entonces aún así se debe agregar el costo de dicha pieza utilizada
                                 costoMueble+=piezas.get(i).getPrecio().doubleValue()*piezasUtilizadas;//igual que arriba
                                 continue; //utiliza continue ya que no se han encontrado todas las piezas y se debe seguir buscando
                             } else if(piezasFaltantes > 0 && ensamblePermitido == true && i == piezas.size()){ //si todavía hay piezas faltantes y el iterador ya ha llegado al último valor significa que no encontró el número de piezas necesarias para la elaboración del producto

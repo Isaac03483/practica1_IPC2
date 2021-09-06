@@ -25,6 +25,10 @@ public class Obtencion {
         select = new Select();
     }
 
+    
+    /** 
+     * @return List<Mueble>
+     */
     public List<Mueble> getMuebles(){
         List<Mueble> muebles = new ArrayList<>();
         ResultSet datosMuebles = select.selectMueblesAll();
@@ -41,6 +45,11 @@ public class Obtencion {
         return muebles;
     }
 
+    
+    /** 
+     * @param orden
+     * @return List<Pieza>
+     */
     public List<Pieza> getPiezasOrdenadas(String orden){
 
         List<Pieza> piezas = new ArrayList<>();
@@ -59,6 +68,11 @@ public class Obtencion {
     }
 
     
+    
+    /** 
+     * @param orden
+     * @return List<MuebleEnsamblado>
+     */
     public List<MuebleEnsamblado> getMueblesCreados(String orden){
         List<MuebleEnsamblado> muebles = new ArrayList<>();
         ResultSet listaMuebles = select.selectTodosMueblesEnsamblados(orden);
@@ -75,6 +89,10 @@ public class Obtencion {
         return muebles;
     }
 
+    
+    /** 
+     * @return List<Pieza>
+     */
     public List<Pieza> getPiezasSeparadas(){
         List<Pieza> piezas = new ArrayList<>();
         ResultSet listaPiezas = select.selectPiezas();
@@ -91,6 +109,11 @@ public class Obtencion {
         return piezas;
     }
 
+    
+    /** 
+     * @param nombreUsuario
+     * @return Usuario
+     */
     public Usuario getUsuario(String nombreUsuario){
         Usuario usuario = null;
         ResultSet busqueda = select.selectUsuario(nombreUsuario);
@@ -107,6 +130,10 @@ public class Obtencion {
         return usuario;
     }
 
+    
+    /** 
+     * @return List<Usuario>
+     */
     public List<Usuario> getUsuariosActivos(){
 
         List<Usuario> usuarios = new ArrayList<>();
@@ -124,6 +151,11 @@ public class Obtencion {
         return usuarios;
     }
 
+    
+    /** 
+     * @param ensamblado
+     * @return List<MuebleEnsamblado>
+     */
     public List<MuebleEnsamblado> getMueblesDisponibles(String ensamblado){
         List<MuebleEnsamblado> muebles = new ArrayList<>();
         ResultSet listaMuebles = select.selectMueblesDisponibles(ensamblado);
@@ -140,6 +172,11 @@ public class Obtencion {
         return muebles;
     }
 
+    
+    /** 
+     * @param nombreMueble
+     * @return Mueble
+     */
     public Mueble getMueble(String nombreMueble){
         Mueble mueble=null;
         ResultSet resultadoMueble = select.selectMueble(nombreMueble);
@@ -156,6 +193,11 @@ public class Obtencion {
         return mueble;
     }
 
+    
+    /** 
+     * @param id
+     * @return MuebleEnsamblado
+     */
     public MuebleEnsamblado getMuebleSelecionado(String id){
         MuebleEnsamblado mueble=null;
         ResultSet resultadoMueble = select.selectMuebleSeleccionado(id);
@@ -173,6 +215,11 @@ public class Obtencion {
         return mueble;
     }
     
+    
+    /** 
+     * @param nit
+     * @return Cliente
+     */
     public Cliente getCliente(String nit){
         Cliente cliente=null;
         ResultSet resultadoCliente = select.selectCliente(nit);
@@ -189,6 +236,10 @@ public class Obtencion {
         return cliente;
     }
 
+    
+    /** 
+     * @return List<Cliente>
+     */
     public List<Cliente> getClientes(){
         List<Cliente> clientes = new ArrayList<>();
         ResultSet resultadoCliente = select.selectClientes();
@@ -205,6 +256,13 @@ public class Obtencion {
         return clientes;
     }
 
+    
+    /** 
+     * @param nit
+     * @param fechaInicial
+     * @param fechaFinal
+     * @return List<Compra>
+     */
     public List<Compra> getCompras(String nit, String fechaInicial, String fechaFinal){
         List<Compra> compras = new ArrayList<>();
         ResultSet resultadoCompras = select.selectCompras(nit, fechaInicial,fechaFinal);
@@ -223,6 +281,10 @@ public class Obtencion {
         return compras;
     }
 
+    
+    /** 
+     * @return List<Compra>
+     */
     public List<Compra> getVentasDia(){
         List<Compra> compras = new ArrayList<>();
         ResultSet resultadoCompras = select.selectComprasDia();
@@ -240,6 +302,11 @@ public class Obtencion {
         return compras;
     }
 
+    
+    /** 
+     * @param numeroCompra
+     * @return Compra
+     */
     public Compra getCompra(int numeroCompra){
         Compra compra = null;
         ResultSet resultadoBusqueda = select.selectCompra(numeroCompra);
@@ -256,6 +323,13 @@ public class Obtencion {
         return compra;
     }
 
+    
+    /** 
+     * @param nit
+     * @param fechaInicial
+     * @param fechaFinal
+     * @return List<Devolucion>
+     */
     public List<Devolucion> getDevoluciones(String nit, String fechaInicial, String fechaFinal){
         List<Devolucion> devolucion = new ArrayList<>();
         ResultSet resultadoDevolucion = select.selectDevoluciones(nit, fechaInicial,fechaFinal);
@@ -273,6 +347,10 @@ public class Obtencion {
         return devolucion;
     }
 
+    
+    /** 
+     * @return List<Pieza>
+     */
     public List<Pieza> getPiezasPorAcabar(){
         List<Pieza> piezas = new ArrayList<>();
 
@@ -290,6 +368,10 @@ public class Obtencion {
         return piezas;
     }
 
+    
+    /** 
+     * @return MuebleEnsamblado
+     */
     public MuebleEnsamblado getMuebleMasVendido(){
         MuebleEnsamblado muebleMasVendido = null;
 
@@ -309,6 +391,10 @@ public class Obtencion {
         return muebleMasVendido;
     }
 
+    
+    /** 
+     * @return MuebleEnsamblado
+     */
     public MuebleEnsamblado getMuebleMenosVendido(){
         MuebleEnsamblado muebleMasVendido = null;
 
@@ -328,6 +414,13 @@ public class Obtencion {
         return muebleMasVendido;
     }
 
+    
+    /** 
+     * @param nombreMueble
+     * @param fechaInicial
+     * @param fechaFinal
+     * @return List<Compra>
+     */
     public List<Compra> getFacturaMuebleV(String nombreMueble, String fechaInicial, String fechaFinal){
         List<Compra> compras = new ArrayList<>();
         ResultSet resultadoCompras = select.selectFacturaMuebleV(nombreMueble, fechaInicial,fechaFinal);
@@ -346,6 +439,12 @@ public class Obtencion {
         return compras;
     }
 
+    
+    /** 
+     * @param fechaInicial
+     * @param fechaFinal
+     * @return List<Compra>
+     */
     public List<Compra> getReporteVentas(String fechaInicial, String fechaFinal){
         List<Compra> compras = new ArrayList<>();
         ResultSet resultadoCompras = select.selectReporteVentas(fechaInicial,fechaFinal);
@@ -364,6 +463,12 @@ public class Obtencion {
         return compras;
     }
 
+    
+    /** 
+     * @param fechaInicial
+     * @param fechaFinal
+     * @return List<Devolucion>
+     */
     public List<Devolucion> getReporteDevolucion(String fechaInicial, String fechaFinal){
         List<Devolucion> devolucion = new ArrayList<>();
         ResultSet resultadoDevolucion = select.selectReporteDevolucion(fechaInicial,fechaFinal);
@@ -382,6 +487,12 @@ public class Obtencion {
         return devolucion;
     }
 
+    
+    /** 
+     * @param fechaInicial
+     * @param fechaFinal
+     * @return List<Caja>
+     */
     public List<Caja> getReporteGanancia(String fechaInicial, String fechaFinal){
         List<Caja> ganancia = new ArrayList<>();
         ResultSet resultadoGanancia = select.selectReporteGanancia(fechaInicial,fechaFinal);
@@ -400,6 +511,12 @@ public class Obtencion {
         return ganancia;
     }
 
+    
+    /** 
+     * @param fechaInicial
+     * @param fechaFinal
+     * @return List<Caja>
+     */
     public List<Caja> getReporteUsuarioGanancias(String fechaInicial, String fechaFinal){
         List<Caja> ganancia = new ArrayList<>();
         ResultSet resultadoGanancia = select.selectReporteUsuarioGanancias(fechaInicial,fechaFinal);
@@ -418,6 +535,12 @@ public class Obtencion {
         return ganancia;
     }
 
+    
+    /** 
+     * @param fechaInicial
+     * @param fechaFinal
+     * @return List<Compra>
+     */
     public List<Compra> getReporteUsuarioVentas(String fechaInicial, String fechaFinal){
         List<Compra> compras = new ArrayList<>();
         ResultSet resultadoCompras = select.selectReporteUsuarioVentas(fechaInicial,fechaFinal);

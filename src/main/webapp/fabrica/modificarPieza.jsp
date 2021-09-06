@@ -35,7 +35,7 @@
 
                                 <%
                                     for(int i = 0; i < listaPiezas.size(); i++){
-                                        out.print("<option value=\""+listaPiezas.get(i).getTipoPieza()+"Λ"+listaPiezas.get(i).getPrecio()+"\">"+listaPiezas.get(i).getTipoPieza()+" "+listaPiezas.get(i).getPrecio()+"</option>");
+                                        out.print("<option value=\""+listaPiezas.get(i).getTipoPieza()+"#"+listaPiezas.get(i).getPrecio()+"\">"+listaPiezas.get(i).getTipoPieza()+" "+listaPiezas.get(i).getPrecio()+"</option>");
                                     }
                                 %>
                             </select><br>

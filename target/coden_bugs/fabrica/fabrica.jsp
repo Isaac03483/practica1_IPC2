@@ -38,7 +38,7 @@
         <div class="container lateral">
             <center><label><strong>AVISO PIEZAS POR ACABAR:</strong></label></center><br>
             
-            <table style="width:80%">
+            <table class="table table-bordered" style="width:80%">
 
                 <tr>
                     <th>Pieza</th>

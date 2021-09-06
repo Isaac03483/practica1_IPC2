@@ -24,7 +24,7 @@
             <a href="/coden_bugs/fabrica/consultaPiezasMayor.jsp" class="btn btn-block">Ordenar de forma Ascendente</a><br>
             <a href="/coden_bugs/fabrica/fabrica.jsp" class="btn btn-block">Volver</a><br>
             <center><label>Lista de Piezas Orden: Descendente</label></center><br>
-            <table style="width:80%">
+            <table class="table table-bordered" style="width:80%">
 
                 <tr>
                     <th>Pieza</th>

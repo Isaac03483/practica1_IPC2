@@ -24,6 +24,7 @@ import com.mycompany.operaciones.Obtencion;
 public class AgregarVentaServlet extends HttpServlet{
  
     private MuebleEnsamblado mueble;
+    private Mueble muebleBuscado;
     private Cliente cliente;
 
     @Override
@@ -34,7 +35,7 @@ public class AgregarVentaServlet extends HttpServlet{
 
         if(nit != null && !nit.equals("")){
             cliente = new Obtencion().getCliente(nit);
-
+            System.out.println("entra");
             if(cliente != null){
                 request.setAttribute("nit", cliente.getNit());
                 request.setAttribute("nombre", cliente.getNombre());
@@ -42,6 +43,7 @@ public class AgregarVentaServlet extends HttpServlet{
                 request.setAttribute("municipio", cliente.getMunicipio());
                 request.setAttribute("departamento", cliente.getDepartamento());
             } else {
+                System.out.println("entra error");
                 request.setAttribute("nit", nit);
                 request.setAttribute("nombre", "");
                 request.setAttribute("direccion", "");
@@ -49,6 +51,7 @@ public class AgregarVentaServlet extends HttpServlet{
                 request.setAttribute("departamento", "");
             }
         } else {
+            System.err.println("no entra");
             request.setAttribute("nit", nit);
             request.setAttribute("nombre", "");
             request.setAttribute("direccion", "");
@@ -58,9 +61,10 @@ public class AgregarVentaServlet extends HttpServlet{
 
         if(id != null && !id.equals("")){
             mueble = new Obtencion().getMuebleSelecionado(id);
+            muebleBuscado = new Obtencion().getMueble(mueble.getMuebleEnsamblar());
 
-            if(mueble != null){
-                request.setAttribute("costo", mueble.getCosto());
+            if(muebleBuscado != null){
+                request.setAttribute("costo", muebleBuscado.getPrecio());
             } else {
                 request.setAttribute("costo", 0);
             }
@@ -106,7 +110,7 @@ public class AgregarVentaServlet extends HttpServlet{
     }
 
     private void guardarVenta(String nombreUsuario, String nit){
-        Mueble muebleBuscado = new Obtencion().getMueble(mueble.getMuebleEnsamblar());
+        
         try {
             if(muebleBuscado.getPrecio().doubleValue() > mueble.getCosto().doubleValue()){
                 double ganancia = muebleBuscado.getPrecio().doubleValue() - mueble.getCosto().doubleValue();

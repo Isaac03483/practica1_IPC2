@@ -1,8 +1,8 @@
+CREATE DATABASE coden_bugs;
+
 CREATE USER 'usuario'@'localhost' IDENTIFIED BY 'ConTr@.34';
 
 GRANT ALL PRIVILEGES ON coden_bugs.* TO 'usuario'@'localhost';
-
-CREATE DATABASE coden_bugs;
 
 USE coden_bugs;
 
@@ -89,4 +89,4 @@ CREATE TABLE caja (
 	perdida DECIMAL(7,3) DEFAULT 0,
 	CONSTRAINT identificador_mueble_fk FOREIGN KEY(identificador_mueble)
     REFERENCES mueble_ensamblado(identificador_unico)
-); 
+);
